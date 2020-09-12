@@ -1,16 +1,18 @@
-dist: trusty
-language: java
-jdk:
-  - oraclejdk8
-services:
-  - mysql
-#before_install:
-#  - cp .travis.settings.xml $HOME/.m2/settings.xml
-before_script:
-  - mysql -u root -e 'CREATE DATABASE desapp;'
-  - echo "USE mysql;\nUPDATE user SET password=PASSWORD('root') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
+jdk: oraclejdk8 # JDK to use for the build.
+language: java  # The programming language of the project.
+sudo: false     # No need to run this as root
 
-#deploy:
-#  provider: script
-#  script: "mvn -B -V deploy"
-#  skip_cleanup: true
+# For maven projects, the default installation phase can be skipped
+install: true
+
+# The branches to build.
+# Can either include or exclude branches.
+# Here only changes to the master branch will be build.
+branches:
+  only:
+  - master
+
+# Cache the maven repository to not need to download all dependencies on every build.
+cache:
+  directories:
+  - "$HOME/.m2/repository"
