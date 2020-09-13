@@ -5,4 +5,5 @@ jdk:
 script: ./mvnw clean install
 
 before_install:
+  - cd backend-desapp-api/ 
   - chmod +x mvnw
