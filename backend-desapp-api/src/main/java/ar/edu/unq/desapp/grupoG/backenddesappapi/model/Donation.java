@@ -8,13 +8,13 @@ public class Donation {
     
     private Integer idLocation;
     
-    private Float quantity; //cantidad
+    private Double amount; //cantidad
 
-    public Donation(Integer id, Integer idUser, Integer idLocation, Float quantity){
+    public Donation(Integer id, Integer idUser, Integer idLocation, Double amount){
         this.id = id;
         this.idUser = idUser;
         this.idLocation = idLocation;
-        this.quantity = quantity;
+        this.amount = amount;
     }
 
     public Integer getId() {
@@ -41,12 +41,12 @@ public class Donation {
 		this.idLocation = idLocation;
 	}
 
-	public Float getQuantity() {
-		return quantity;
+	public Double getAmount() {
+		return amount;
 	}
 
-	public void setQuantity(Float quantity) {
-		this.quantity = quantity;
+	public void setAmount(Double amount) {
+		this.amount = amount;
 	}
 
 }

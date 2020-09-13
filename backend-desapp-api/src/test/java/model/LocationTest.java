@@ -17,8 +17,29 @@ public class LocationTest {
     }
 
     @Test
-    void getIdQualificationTest(){
+    void getIdLocationTest(){
         int expectedId = 0;
         assertEquals(expectedId, location.getId());
     }
+    
+    @Test
+    void getNameLocationTest(){
+        assertEquals("Quilmes", location.getName());
+    }
+    
+    @Test
+    void getProvinceLocationTest(){
+        assertEquals("Buenos Aires", location.getProvince());
+    }
+    
+    @Test
+    void getPopulationLocationTest(){
+        assertEquals(100, location.getPopulation());
+    }
+    
+    @Test
+    void getStateLocationTest(){
+        assertEquals(true, location.getState());
+    }
+    
 }
