@@ -49,4 +49,13 @@ public class Donation {
 		this.amount = amount;
 	}
 
+	/*
+	DonationService
+	public void donate(){
+		Donation donation = new Donation();
+		calculo los puntos
+		lo seteo en la donacion
+		donation.save()
+	}*/
+
 }
