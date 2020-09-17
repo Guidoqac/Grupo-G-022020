@@ -6,14 +6,20 @@ public class Donation {
     
     private Integer idUser;
     
-    private Integer idLocation;
+    private Integer idProject;
     
     private Double amount; //cantidad
 
-    public Donation(Integer id, Integer idUser, Integer idLocation, Double amount){
+    public Donation(Integer id, Integer idUser, Integer idProject, Double amount){
         this.id = id;
         this.idUser = idUser;
-        this.idLocation = idLocation;
+        this.idProject = idProject;
+        this.amount = amount;
+    }
+    
+    public Donation(Integer idUser, Integer idProject, Double amount){
+        this.idUser = idUser;
+        this.idProject = idProject;
         this.amount = amount;
     }
 
@@ -33,12 +39,12 @@ public class Donation {
 		this.idUser = idUser;
 	}
 
-	public Integer getIdLocation() {
-		return idLocation;
+	public Integer getIdProject() {
+		return idProject;
 	}
 
-	public void setIdLocation(Integer idLocation) {
-		this.idLocation = idLocation;
+	public void setIdProject(Integer idProject) {
+		this.idProject = idProject;
 	}
 
 	public Double getAmount() {

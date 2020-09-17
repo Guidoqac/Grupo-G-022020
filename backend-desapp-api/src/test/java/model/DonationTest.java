@@ -9,28 +9,29 @@ import org.junit.jupiter.api.Test;
 
 import antlr.collections.List;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Donation;
-import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Location;
 
 public class DonationTest {
 	private Donation donation;
 
     @BeforeEach
     void setUp() {
-        donation = new Donation(0, 1, 2, 5000.45);
+//        donation = new Donation(0, 1, 2, 5000.45);
     }
-    
-	@Test //EXAMPLE MOCK
-	void contextLoads() {
-		// mock creation
-		List mockedList = mock(List.class);
-//		mockedList.add("one");
-//		mockedList.add("hola");
-		when(mockedList.elementAt(0)).thenReturn("one");
-		when(mockedList.elementAt(1)).thenReturn("hola");
-		
-		assertEquals("hola", mockedList.elementAt(1));
 	
-	}
+//	@Test //EXAMPLE MOCK
+//	void testAmountDonate() {
+//        int idUserGuido = 0;
+//        int idUserGonza = 1;
+//        
+//        int idProjectQuilmes = 1;
+//        int idProjectBernal = 2;
+//
+//        Donation donacionQuilmes = new Donation(1, idUserGuido, idProjectQuilmes, 500.00);
+//        Donation donacionQuilmes2 = new Donation(2, idUserGonza, idProjectQuilmes, 500.00);
+//        
+//        
+//        
+//	}
 
     @Test
     void getIdDonationTest(){
@@ -44,8 +45,8 @@ public class DonationTest {
     }
     
     @Test
-    void getIdLocationDonationTest(){
-        assertEquals(2, donation.getIdLocation());
+    void getIdProjectDonationTest(){
+        assertEquals(2, donation.getIdProject());
     }
     
     @Test
