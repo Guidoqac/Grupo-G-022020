@@ -1,51 +1,59 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Project {
 
     private int idProject;
-    private int idLocation;
+    private Location location;
     private int factor;
-    private float minPercentProjectClosure;
+    private Double minPercentProjectClosure;
     private String projectFantasyName;
     private LocalDate closeProjectDate;
     private LocalDate startProjectDate;
+    private ArrayList<Donation> donations;
     private boolean isClosed;
 
-    public Project(int idProject, int idLocation, int factor, float minPercentProjectClosure, String projectFantasyName, LocalDate closeProjectDate, LocalDate startProjectDate) {
+    public Project(int idProject, Location location, int factor, Double minPercentProjectClosure, String projectFantasyName, LocalDate closeProjectDate, LocalDate startProjectDate) {
         this.idProject = idProject;
-        this.idLocation = idLocation;
+        this.location = location;
         this.factor = factor;
         this.minPercentProjectClosure = minPercentProjectClosure;
         this.projectFantasyName = projectFantasyName;
         this.closeProjectDate = closeProjectDate;
         this.startProjectDate = startProjectDate;
+        this.donations = new ArrayList<Donation>();
+        this.isClosed = false;
     }
 
-    public Project(int idProject, int idLocation, float minPercentProjectClosure, String projectFantasyName, LocalDate closeProjectDate, LocalDate startProjectDate) {
+    /* constructor para el factor por default */
+    public Project(int idProject, Location location, Double minPercentProjectClosure, String projectFantasyName, LocalDate closeProjectDate, LocalDate startProjectDate) {
         this.idProject = idProject;
-        this.idLocation = idLocation;
+        this.location = location;
         this.factor = 1000;
         this.minPercentProjectClosure = minPercentProjectClosure;
         this.projectFantasyName = projectFantasyName;
         this.closeProjectDate = closeProjectDate;
         this.startProjectDate = startProjectDate;
+        this.donations = new ArrayList<Donation>();
+        this.isClosed = false;
     }
 
     public int getIdProject() {
         return this.idProject;
     }
 
-    public int getIdLocation() {
-        return this.idLocation;
+    public Location getLocation() {
+        return this.location;
     }
 
     public int getFactor() {
         return this.factor;
     }
 
-    public float getMinPercentProjectClosure() {
+    public Double getMinPercentProjectClosure() {
         return this.minPercentProjectClosure;
     }
 
@@ -61,20 +69,43 @@ public class Project {
         return this.startProjectDate;
     }
 
-    /*
     public double calculateBudget() {
-        int population = 0; //consulta a la db que trae la cantidad de poblacion de locate a travez del idLocation
+        int population = this.location.getPopulation();
         int budget = population * this.factor;
         return budget;
     }
 
     public double calculateMinPercentage(){
-        return this.calculateBudget() * this.minPercentProjectClosure;
+        return this.calculateBudget() * this.minPercentProjectClosure / 100;
     }
 
-    public boolean minimumCollected(){
-        int collected = 0; //Obtener desde la db a travez de idProject todas las donaciones y sacar la sumatoria de todas sus cantidades de donacion
+    public boolean isMinimumCollected(){
+		double collected = this.donations.stream().mapToDouble(d -> d.getAmount()).sum();
         return collected >= this.calculateMinPercentage();
     }
-    */
+
+    public double actualBudgetCollected(){
+        return this.donations.stream().mapToDouble(d -> d.getAmount()).sum();
+    }
+
+    public ArrayList<Donation> getDonations(){
+        return this.donations;
+    }
+
+    public void SetDonations(ArrayList<Donation> donations){
+        this.donations = donations;
+    }
+
+    public boolean getIsOpen(){
+        return this.isClosed;
+    }
+
+    public void CloseProject(){ //Testear
+        this.isClosed = true;
+    }
+
+    public void addDonation(Donation donation){ //Testear
+        this.donations.add(donation);
+    }
+    
 }
