@@ -1,4 +1,4 @@
-package model;
+package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

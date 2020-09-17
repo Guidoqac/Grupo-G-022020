@@ -1,4 +1,4 @@
-package model;
+package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
 
 import org.junit.jupiter.api.BeforeEach;

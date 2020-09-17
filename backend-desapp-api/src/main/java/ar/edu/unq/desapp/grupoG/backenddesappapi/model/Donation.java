@@ -8,7 +8,7 @@ public class Donation {
     
     private Integer idProject;
     
-    private Double amount; //cantidad
+    private double amount; //cantidad
 
     public Donation(Integer id, Integer idUser, Integer idProject, Double amount){
         this.id = id;
@@ -47,7 +47,7 @@ public class Donation {
 		this.idProject = idProject;
 	}
 
-	public Double getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 

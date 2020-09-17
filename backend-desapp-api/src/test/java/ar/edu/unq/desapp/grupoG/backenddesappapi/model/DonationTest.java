@@ -1,4 +1,4 @@
-package model;
+package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -15,23 +15,8 @@ public class DonationTest {
 
     @BeforeEach
     void setUp() {
-//        donation = new Donation(0, 1, 2, 5000.45);
+       donation = new Donation(0, 1, 2, 5000.45);
     }
-	
-//	@Test //EXAMPLE MOCK
-//	void testAmountDonate() {
-//        int idUserGuido = 0;
-//        int idUserGonza = 1;
-//        
-//        int idProjectQuilmes = 1;
-//        int idProjectBernal = 2;
-//
-//        Donation donacionQuilmes = new Donation(1, idUserGuido, idProjectQuilmes, 500.00);
-//        Donation donacionQuilmes2 = new Donation(2, idUserGonza, idProjectQuilmes, 500.00);
-//        
-//        
-//        
-//	}
 
     @Test
     void getIdDonationTest(){
