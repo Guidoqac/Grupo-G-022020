@@ -2,6 +2,7 @@ package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Project {
 
@@ -99,12 +100,27 @@ public class Project {
         return this.isClosed;
     }
 
-    public void closeProject(){ //Testear
+    public void closeProject(){
         this.isClosed = true;
     }
 
-    public void addDonation(Donation donation){ //Testear
+    public void addDonation(Donation donation){
         this.donations.add(donation);
+    }
+    
+    public boolean alreadyDonate(int idUser) {
+    	boolean donate = false;
+    	Iterator<Donation> iteratorDonations = donations.iterator();
+    	
+    	while (iteratorDonations.hasNext() && !donate) {
+    		Donation donation = (Donation) iteratorDonations.next();
+    		//SI es el mismo user y SI la donacion tiene como mes el actual
+    		//entonces ya se realizo una donacion en el mismo mes de dicho usuario
+    		if (donation.getIdUser() == idUser && ( donation.getDonationDate().getMonth() == LocalDate.now().getMonth()) ) {
+    			donate = true;
+    		}
+    	}
+    	return donate;
     }
     
 }

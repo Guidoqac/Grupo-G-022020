@@ -35,9 +35,44 @@ public class Application {
 
     //Precond. : Existe el proyecto en la aplicacion.
     public void donate(int idUser, int idProject, double amount){
-        Donation newDonation = new Donation(this.nextIdDonation, idUser, idProject, amount);
+        
+        User userFinded = findUser(idUser);   
         Project projectFinded = findProject(idProject);
-        projectFinded.addDonation(newDonation);
+        
+       //Usuario crea la donacion. El metodo nos devuelve una donacion
+        Donation donationByUser = userFinded.donate(idProject, amount);
+
+        // Agregamos la donacion de dicho usuario al projecto encontrado.
+        projectFinded.addDonation(donationByUser);
+        
+        // SISTEMA DE PUNTOS
+        int pointsUser = 0;
+        
+        // Si colabora en 1 proyecto con más de 1000 pesos, obtendrá la misma cantidad de puntos que pesos invertidos.
+        if (amount >= 1000.0 && (findProject(idProject).getLocation().getPopulation() >= 2000) && findProject(idProject).alreadyDonate(idUser) ) {
+        	pointsUser = (int) (pointsUser + amount) + 500;
+        } else if (amount >= 1000.0 && (findProject(idProject).getLocation().getPopulation() >= 2000)) {
+        	pointsUser = (int) (pointsUser + amount);
+        }
+        
+        //Si colabora en 1 proyecto de una localidad de menos de 2000 habitantes, la cantidad de puntos será el doble de los pesos invertidos.
+        if ((findProject(idProject).getLocation().getPopulation() < 2000) && findProject(idProject).alreadyDonate(idUser)) {
+        	pointsUser = (int) ((pointsUser + amount) * 2 + 500);
+        	
+        } else if (findProject(idProject).getLocation().getPopulation() < 2000) {
+        	pointsUser = (int) ((pointsUser + amount) * 2);
+        }
+
+        if ((findProject(idProject).getLocation().getPopulation() >= 2000) && amount < 1000.0 && findProject(idProject).alreadyDonate(idUser)) {
+        	pointsUser = 100 + 500;
+        	
+        } else if ((findProject(idProject).getLocation().getPopulation() >= 2000) && amount < 1000.0) {
+        	pointsUser = 100;
+        }
+        
+        userFinded.setPoints(pointsUser);
+                        
+        // SISTEMA DE PUNTOS        
     }
 
     public int countDonationsByProject(int idProject) {
@@ -54,6 +89,10 @@ public class Application {
 
     public void setProjects(ArrayList<Project> projects){
         this.projects = projects;
+    }
+    
+    public void setUsers(ArrayList<User> users){
+        this.users = users;
     }
 
     public List<Project> getNextProjectToEnd() {
@@ -72,5 +111,16 @@ public class Application {
             }
         }
         return projectFinded;
+    }
+    
+    //Precond. : Existe el usuario en la aplicacion.
+    public User findUser(int idUser){
+        User userFinded = null;
+        for (User i : this.users) {
+            if(i.getIdUser() == idUser){
+            	userFinded = i;
+            }
+        }
+        return userFinded;
     }
 }

@@ -10,6 +10,8 @@ import static org.mockito.Mockito.when;
 
 class ProjectTest {
 
+	private User userMock;
+	
     private Project projectToninas;
 
     private Project projectDefaultFactor;
@@ -21,6 +23,9 @@ class ProjectTest {
     private ArrayList<Donation> donations;
 
     private Donation donMock5;
+    
+    private Donation donMock4;
+
 
     @BeforeEach
     void setUp() {
@@ -32,13 +37,18 @@ class ProjectTest {
         Donation donMock1 = mock(Donation.class);
         Donation donMock2 = mock(Donation.class);
         Donation donMock3 = mock(Donation.class);
-        Donation donMock4 = mock(Donation.class);
+        donMock4 = mock(Donation.class);
         donMock5 = mock(Donation.class);
+        
+        userMock = mock(User.class);
 
         donations.add(donMock1);
         donations.add(donMock2);
         donations.add(donMock3);
         donations.add(donMock4);
+        
+        
+        when(userMock.getIdUser()).thenReturn(1);
 
         when(locationToninas.getId()).thenReturn(5);
         when(locationToninas.getPopulation()).thenReturn(1000);
@@ -46,6 +56,9 @@ class ProjectTest {
         when(donMock2.getAmount()).thenReturn(500000.0);
         when(donMock3.getAmount()).thenReturn(500000.0);
         when(donMock4.getAmount()).thenReturn(500000.0);
+        
+        when(donMock4.getDonationDate()).thenReturn(LocalDate.now());
+        when(donMock4.getIdUser()).thenReturn(1);
 
         projectToninas = new Project(0, locationToninas, 2000, 50.0, "Salvemos a Las Toninas", closeProjectDate, startProjectDate);
         projectDefaultFactor = new Project(1, locationToninas, 50.0, "Salvemos a Las Toninas 2", closeProjectDate, startProjectDate);
@@ -148,5 +161,11 @@ class ProjectTest {
         projectToninas.addDonation(donMock5);
         int donationsAmountExpected = 1;
         assertEquals(donationsAmountExpected, projectToninas.getDonations().size());
+    }
+    
+    @Test
+    void alreadyDonateTest(){
+        projectToninas.addDonation(donMock4);
+        assertEquals(true, projectToninas.alreadyDonate(1));
     }
 }

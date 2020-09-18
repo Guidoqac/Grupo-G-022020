@@ -8,6 +8,7 @@ public class User {
     private String nick;
     private String password;
     private String email;
+    private int points;
 
     public User(int idUser, String name, String surname, String nick, String password, String email){
         this.idUser = idUser;
@@ -35,5 +36,18 @@ public class User {
     }
 
     public String getPassword() { return this.password; }
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+	
+	public Donation donate(int idProject, double amount) {
+        Donation newDonation = new Donation(this.getIdUser(), idProject, amount);
+        return newDonation;
+	}
 
 }
