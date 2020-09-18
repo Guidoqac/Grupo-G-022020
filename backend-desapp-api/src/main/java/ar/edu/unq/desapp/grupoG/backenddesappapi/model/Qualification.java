@@ -18,14 +18,6 @@ public class Qualification {
         this.comment = comment;
     }
     
-    public Qualification(int idUser, int idLocation, int idDonation, int score, String comment){
-        this.idUser = idUser;
-        this.idLocation = idLocation;
-        this.idDonation = idDonation;
-        this.score = score;
-        this.comment = comment;
-    }
-    
     public int getIdQualification(){ return this.idQualification; }
 
     public int getIdUser(){ return this.idUser; }

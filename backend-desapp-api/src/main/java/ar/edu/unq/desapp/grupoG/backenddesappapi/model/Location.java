@@ -10,15 +10,15 @@ public class Location {
     
     private Integer population;
 
-    private Boolean state; // estado de conectividad
+    private String connectivityStatus;
 	
-	public Location(Integer id, String name, String province, Integer population, Boolean state) {
+	public Location(Integer id, String name, String province, Integer population, String status) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.province = province;
 		this.population = population;
-		this.state = state;
+		this.connectivityStatus = status;
 	}
 
 	public Integer getId() {
@@ -53,12 +53,12 @@ public class Location {
 		this.population = population;
 	}
 
-	public Boolean getState() {
-		return state;
+	public String getStatus() {
+		return connectivityStatus;
 	}
 
-	public void setState(Boolean state) {
-		this.state = state;
+	public void setStatus(String status) {
+		this.connectivityStatus = status;
 	}
     
 }

@@ -35,10 +35,5 @@ public class User {
     }
 
     public String getPassword() { return this.password; }
-    
-    public Donation donate(int idProject, Double amount) {
-    	Donation donate = new Donation(this.idUser, idProject, amount);
-    	return donate;
-    }
 
 }

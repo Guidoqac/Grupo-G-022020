@@ -1,13 +1,9 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
 
 public class Application {
 
@@ -34,11 +30,11 @@ public class Application {
     }
 
     public List<Project> getOpenProjects(){
-        return projects.stream().filter(p -> p.getIsOpen()).collect(Collectors.toList());
+        return projects.stream().filter(p -> p.isOpen()).collect(Collectors.toList());
     }
 
     //Precond. : Existe el proyecto en la aplicacion.
-    public void Donate(int idUser, int idProject, double amount){
+    public void donate(int idUser, int idProject, double amount){
         Donation newDonation = new Donation(this.nextIdDonation, idUser, idProject, amount);
         Project projectFinded = findProject(idProject);
         projectFinded.addDonation(newDonation);
@@ -56,7 +52,7 @@ public class Application {
         return this.projects.size();
     }
 
-    public void SetProjects(ArrayList<Project> projects){
+    public void setProjects(ArrayList<Project> projects){
         this.projects = projects;
     }
 

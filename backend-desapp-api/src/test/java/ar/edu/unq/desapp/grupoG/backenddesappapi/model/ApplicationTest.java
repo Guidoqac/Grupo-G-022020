@@ -5,11 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,9 +56,9 @@ class ApplicationTest {
         donations.add(donMock1);
         donations.add(donMock2);
 
-        when(projMock1.getIsOpen()).thenReturn(true);
-        when(projMock2.getIsOpen()).thenReturn(true);
-        when(projMock3.getIsOpen()).thenReturn(false);
+        when(projMock1.isOpen()).thenReturn(true);
+        when(projMock2.isOpen()).thenReturn(true);
+        when(projMock3.isOpen()).thenReturn(false);
         when(projMock1.getIdProject()).thenReturn(1);
         when(projMock2.getIdProject()).thenReturn(2);
         when(projMock3.getIdProject()).thenReturn(3);
@@ -78,50 +74,50 @@ class ApplicationTest {
     }
 
     @Test
-    void CountUsersTest(){
+    void countUsersTest(){
         int expectedUsers = 0;
         assertEquals(expectedUsers, app.countUsers());
     }
 
     @Test
-    void CountProjectsTest(){
+    void countProjectsTest(){
         int expectedProjects = 0;
         assertEquals(expectedProjects, app.countProjects());
     }
 
     @Test
-    void RegisterTest() {
+    void registerTest() {
         int expectedUsersInApp = 1;
         app.register("Gonza", " Veron", "algo@gmail.com", "1234", "Spore");
         assertEquals(expectedUsersInApp, app.countUsers());
     }
 
     @Test
-    void AddProjectTest() {
+    void addProjectTest() {
         int expectedProjectsInApp = 1;
         app.addProject(locationMock, 1000, 50.0, "Salvemos las toninas", LocalDate.now());
         assertEquals(expectedProjectsInApp, app.countProjects());
     }
 
     @Test
-    void GetOpenProjectsTest() {
-        app.SetProjects(projects);
+    void getOpenProjectsTest() {
+        app.setProjects(projects);
         int expectedProjects = 2;
         assertEquals(expectedProjects, app.getOpenProjects().size());
     }
 
     @Test
-    void GetNextProjectToEndTest(){
-        app.SetProjects(projects);
+    void getNextProjectToEndTest(){
+        app.setProjects(projects);
         int expectedProjects = 1;
         assertEquals(expectedProjects, app.getNextProjectToEnd().size());
     }
 
     @Test
-    void DonateTest(){
-        app.SetProjects(projects);
-        app.Donate(0, 2, 100000.0);
-        app.Donate(1, 2, 10.0);
+    void donateTest(){
+        app.setProjects(projects);
+        app.donate(0, 2, 100000.0);
+        app.donate(1, 2, 10.0);
         int donationsExpected = 2;
         assertEquals(donationsExpected, app.countDonationsByProject(2));
     }

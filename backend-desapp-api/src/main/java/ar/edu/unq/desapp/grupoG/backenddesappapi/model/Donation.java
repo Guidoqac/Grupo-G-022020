@@ -8,7 +8,7 @@ public class Donation {
     
     private Integer idProject;
     
-    private double amount; //cantidad
+    private double amount;
 
     public Donation(Integer id, Integer idUser, Integer idProject, Double amount){
         this.id = id;
@@ -54,14 +54,5 @@ public class Donation {
 	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
-
-	/*
-	DonationService
-	public void donate(){
-		Donation donation = new Donation();
-		calculo los puntos
-		lo seteo en la donacion
-		donation.save()
-	}*/
 
 }

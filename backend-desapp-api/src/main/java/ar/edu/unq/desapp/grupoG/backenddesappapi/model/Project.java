@@ -2,7 +2,6 @@ package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Project {
 
@@ -92,15 +91,15 @@ public class Project {
         return this.donations;
     }
 
-    public void SetDonations(ArrayList<Donation> donations){
+    public void setDonations(ArrayList<Donation> donations){
         this.donations = donations;
     }
 
-    public boolean getIsOpen(){
+    public boolean isOpen(){
         return this.isClosed;
     }
 
-    public void CloseProject(){ //Testear
+    public void closeProject(){ //Testear
         this.isClosed = true;
     }
 
