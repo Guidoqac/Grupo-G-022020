@@ -72,7 +72,7 @@ public class DonationTest {
     void setAmountTest(){
         donation.setAmount(8000.0);
         double expectedAmount = 8000.0;
-        assertEquals(8000.0, donation.getAmount());
+        assertEquals(expectedAmount, donation.getAmount());
     }
 
 }

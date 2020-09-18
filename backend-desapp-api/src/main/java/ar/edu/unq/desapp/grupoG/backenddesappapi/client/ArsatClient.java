@@ -23,17 +23,20 @@ public class ArsatClient {
         return this.restTemplate.getForObject(url, ArsatData.class);
     }
 
-    public void DisableSslVerification() {
+    public void disableSslVerification() {
         try
         {
             // Create a trust manager that does not validate certificate chains
             TrustManager[] trustAllCerts = new TrustManager[] {new X509TrustManager() {
-                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                int x = 98;
+                public X509Certificate[] getAcceptedIssuers() {
                     return null;
                 }
                 public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                    x++;
                 }
                 public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                    x++;
                 }
             }
             };
