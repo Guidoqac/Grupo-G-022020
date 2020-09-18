@@ -91,7 +91,7 @@ public class Project {
         return this.donations;
     }
 
-    public void SetDonations(ArrayList<Donation> donations){
+    public void setDonations(ArrayList<Donation> donations){
         this.donations = donations;
     }
 
@@ -99,7 +99,7 @@ public class Project {
         return this.isClosed;
     }
 
-    public void CloseProject(){ //Testear
+    public void closeProject(){ //Testear
         this.isClosed = true;
     }
 

@@ -19,57 +19,57 @@ public class DonationTest {
     }
 
     @Test
-    void NullIdTest(){
+    void nullIdTest(){
         assertNull(donationWithoutId.getId());
     }
 
     @Test
-    void GetIdDonationTest() {
+    void getIdDonationTest() {
         int expectedId = 0;
         assertEquals(expectedId, donation.getId());
     }
     
     @Test
-    void GetIdUserDonationTest(){
+    void getIdUserDonationTest(){
         int expectedUserId = 1;
         assertEquals(expectedUserId, donation.getIdUser());
     }
     
     @Test
-    void GetIdProjectDonationTest(){
+    void getIdProjectDonationTest(){
         int expectedIdProject = 2;
         assertEquals(expectedIdProject, donation.getIdProject());
     }
     
     @Test
-    void GetAmountDonationTest(){
+    void getAmountDonationTest(){
         double expectedAmountDonation = 5000.45;
         assertEquals(expectedAmountDonation, donation.getAmount());
     }
 
     @Test
-    void SetIdTest(){
+    void setIdTest(){
         donation.setId(7);
         int expectedIdDonation = 7;
         assertEquals(expectedIdDonation, donation.getId());
     }
 
     @Test
-    void SetIdUserTest(){
+    void setIdUserTest(){
         donation.setIdUser(55);
         int expectedIdUser = 55;
         assertEquals(expectedIdUser, donation.getIdUser());
     }
 
     @Test
-    void SetIdProject(){
+    void setIdProject(){
         donation.setIdProject(70);
         int expectedIdProject = 70;
         assertEquals(expectedIdProject, donation.getIdProject());
     }
 
     @Test
-    void SetAmountTest(){
+    void setAmountTest(){
         donation.setAmount(8000.0);
         double expectedAmount = 8000.0;
         assertEquals(8000.0, donation.getAmount());

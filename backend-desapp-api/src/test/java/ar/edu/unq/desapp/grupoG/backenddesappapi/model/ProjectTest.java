@@ -110,35 +110,35 @@ class ProjectTest {
     }
 
     @Test
-    void IsMinimumCollectedFalseTest(){
+    void isMinimumCollectedFalseTest(){
         assertFalse(projectToninas.isMinimumCollected());
     }
 
     @Test
-    void IsMinimumCollectedTrueTest(){
-        projectToninas.SetDonations(donations);
+    void isMinimumCollectedTrueTest(){
+        projectToninas.setDonations(donations);
         assertTrue(projectToninas.isMinimumCollected());
     }
 
     @Test
-    void IsOpenTest(){
+    void isOpenTest(){
         assertFalse(projectToninas.isOpen());
     }
 
     @Test
-    void CloseProjectTest(){
-        projectToninas.CloseProject();
+    void closeProjectTest(){
+        projectToninas.closeProject();
         assertTrue(projectToninas.isOpen());
     }
 
     @Test
-    void GetDonationsTest(){
-        projectToninas.SetDonations(donations);
+    void getDonationsTest(){
+        projectToninas.setDonations(donations);
         assertEquals(donations, projectToninas.getDonations());
     }
 
     @Test
-    void ActualBudgetCollected(){
+    void actualBudgetCollected(){
         double budgetExpected = 0;
         assertEquals(budgetExpected, projectToninas.actualBudgetCollected());
     }

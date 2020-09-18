@@ -34,7 +34,7 @@ public class Application {
     }
 
     //Precond. : Existe el proyecto en la aplicacion.
-    public void Donate(int idUser, int idProject, double amount){
+    public void donate(int idUser, int idProject, double amount){
         Donation newDonation = new Donation(this.nextIdDonation, idUser, idProject, amount);
         Project projectFinded = findProject(idProject);
         projectFinded.addDonation(newDonation);
@@ -52,7 +52,7 @@ public class Application {
         return this.projects.size();
     }
 
-    public void SetProjects(ArrayList<Project> projects){
+    public void setProjects(ArrayList<Project> projects){
         this.projects = projects;
     }
 

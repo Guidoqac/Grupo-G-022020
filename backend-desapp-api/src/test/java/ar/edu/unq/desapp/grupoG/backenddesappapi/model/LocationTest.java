@@ -14,65 +14,65 @@ public class LocationTest {
     }
 
     @Test
-    void GetIdLocationTest(){
+    void getIdLocationTest(){
         int expectedId = 0;
         assertEquals(expectedId, location.getId());
     }
     
     @Test
-    void GetNameLocationTest(){
+    void getNameLocationTest(){
         String expectedName = "Quilmes";
         assertEquals(expectedName, location.getName());
     }
     
     @Test
-    void GetProvinceLocationTest(){
+    void getProvinceLocationTest(){
         String expectedProvinceName = "Buenos Aires";
         assertEquals(expectedProvinceName, location.getProvince());
     }
     
     @Test
-    void GetPopulationLocationTest(){
+    void getPopulationLocationTest(){
         int expectedPopulationAmount = 100;
         assertEquals(expectedPopulationAmount, location.getPopulation());
     }
     
     @Test
-    void GetStateLocationTest(){
+    void getStateLocationTest(){
         String connectivityStatusExpected = "En Planificación";
         assertEquals(connectivityStatusExpected, location.getStatus());
     }
 
     @Test
-    void SetIdTest(){
+    void setIdTest(){
         location.setId(77);
         int expectedIdLocation = 77;
         assertEquals(expectedIdLocation, location.getId());
     }
 
     @Test
-    void SetName(){
+    void setName(){
         location.setName("Avellaneda");
         String expectedName = "Avellaneda";
         assertEquals(expectedName, location.getName());
     }
 
     @Test
-    void SetProvince(){
+    void setProvince(){
         location.setProvince("Salta");
         String expectedProvinceName = "Salta";
         assertEquals(expectedProvinceName, location.getProvince());
     }
 
     @Test
-    void SetPopulation(){
+    void setPopulation(){
         location.setPopulation(999);
         int expectedPopulationAmount = 999;
         assertEquals(expectedPopulationAmount, location.getPopulation());
     }
 
     @Test
-    void SetConnectivityStatusTest(){
+    void setConnectivityStatusTest(){
         location.setStatus("En linea");
         String connectivityStatusExpected = "En linea";
         assertEquals(connectivityStatusExpected, location.getStatus());

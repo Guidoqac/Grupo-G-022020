@@ -17,37 +17,37 @@ class QualificationTest {
     }
 
     @Test
-    void GetIdQualificationTest(){
+    void getIdQualificationTest(){
         int expectedIdQualif = 0;
         assertEquals(expectedIdQualif, qualification.getIdQualification());
     }
 
     @Test
-    void GetIdUserTest() {
+    void getIdUserTest() {
         int expectedIdUser = 11;
         assertEquals(expectedIdUser, qualification.getIdUser());
     }
 
     @Test
-    void GetIdLocationTest() {
+    void getIdLocationTest() {
         int expectedIdLocation = 33;
         assertEquals(expectedIdLocation, qualification.getIdLocation());
     }
 
     @Test
-    void GetIdDonationTest() {
+    void getIdDonationTest() {
         int expectedIdDonation = 12;
         assertEquals(expectedIdDonation, qualification.getIdDonation());
     }
 
     @Test
-    void GetScoreTest() {
+    void getScoreTest() {
         int expectedScore = 7;
         assertEquals(expectedScore, qualification.getScore());
     }
 
     @Test
-    void GetCommentTest() {
+    void getCommentTest() {
         String expectedComment = "A beautiful comment";
         assertEquals(expectedComment, qualification.getComment());
     }

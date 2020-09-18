@@ -74,50 +74,50 @@ class ApplicationTest {
     }
 
     @Test
-    void CountUsersTest(){
+    void countUsersTest(){
         int expectedUsers = 0;
         assertEquals(expectedUsers, app.countUsers());
     }
 
     @Test
-    void CountProjectsTest(){
+    void countProjectsTest(){
         int expectedProjects = 0;
         assertEquals(expectedProjects, app.countProjects());
     }
 
     @Test
-    void RegisterTest() {
+    void registerTest() {
         int expectedUsersInApp = 1;
         app.register("Gonza", " Veron", "algo@gmail.com", "1234", "Spore");
         assertEquals(expectedUsersInApp, app.countUsers());
     }
 
     @Test
-    void AddProjectTest() {
+    void addProjectTest() {
         int expectedProjectsInApp = 1;
         app.addProject(locationMock, 1000, 50.0, "Salvemos las toninas", LocalDate.now());
         assertEquals(expectedProjectsInApp, app.countProjects());
     }
 
     @Test
-    void GetOpenProjectsTest() {
-        app.SetProjects(projects);
+    void getOpenProjectsTest() {
+        app.setProjects(projects);
         int expectedProjects = 2;
         assertEquals(expectedProjects, app.getOpenProjects().size());
     }
 
     @Test
-    void GetNextProjectToEndTest(){
-        app.SetProjects(projects);
+    void getNextProjectToEndTest(){
+        app.setProjects(projects);
         int expectedProjects = 1;
         assertEquals(expectedProjects, app.getNextProjectToEnd().size());
     }
 
     @Test
-    void DonateTest(){
-        app.SetProjects(projects);
-        app.Donate(0, 2, 100000.0);
-        app.Donate(1, 2, 10.0);
+    void donateTest(){
+        app.setProjects(projects);
+        app.donate(0, 2, 100000.0);
+        app.donate(1, 2, 10.0);
         int donationsExpected = 2;
         assertEquals(donationsExpected, app.countDonationsByProject(2));
     }
