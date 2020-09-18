@@ -5,11 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,9 +56,9 @@ class ApplicationTest {
         donations.add(donMock1);
         donations.add(donMock2);
 
-        when(projMock1.getIsOpen()).thenReturn(true);
-        when(projMock2.getIsOpen()).thenReturn(true);
-        when(projMock3.getIsOpen()).thenReturn(false);
+        when(projMock1.isOpen()).thenReturn(true);
+        when(projMock2.isOpen()).thenReturn(true);
+        when(projMock3.isOpen()).thenReturn(false);
         when(projMock1.getIdProject()).thenReturn(1);
         when(projMock2.getIdProject()).thenReturn(2);
         when(projMock3.getIdProject()).thenReturn(3);

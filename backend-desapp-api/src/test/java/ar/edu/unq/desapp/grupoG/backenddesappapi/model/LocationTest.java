@@ -1,45 +1,81 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Location;
-import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Qualification;
-
 public class LocationTest {
+
     private Location location;
 
     @BeforeEach
     void setUp() {
-        location= new Location(0, "Quilmes", "Buenos Aires", 100, true);
+        location= new Location(0, "Quilmes", "Buenos Aires", 100, "En Planificación");
     }
 
     @Test
-    void getIdLocationTest(){
+    void GetIdLocationTest(){
         int expectedId = 0;
         assertEquals(expectedId, location.getId());
     }
     
     @Test
-    void getNameLocationTest(){
-        assertEquals("Quilmes", location.getName());
+    void GetNameLocationTest(){
+        String expectedName = "Quilmes";
+        assertEquals(expectedName, location.getName());
     }
     
     @Test
-    void getProvinceLocationTest(){
-        assertEquals("Buenos Aires", location.getProvince());
+    void GetProvinceLocationTest(){
+        String expectedProvinceName = "Buenos Aires";
+        assertEquals(expectedProvinceName, location.getProvince());
     }
     
     @Test
-    void getPopulationLocationTest(){
-        assertEquals(100, location.getPopulation());
+    void GetPopulationLocationTest(){
+        int expectedPopulationAmount = 100;
+        assertEquals(expectedPopulationAmount, location.getPopulation());
     }
     
     @Test
-    void getStateLocationTest(){
-        assertEquals(true, location.getState());
+    void GetStateLocationTest(){
+        String connectivityStatusExpected = "En Planificación";
+        assertEquals(connectivityStatusExpected, location.getStatus());
+    }
+
+    @Test
+    void SetIdTest(){
+        location.setId(77);
+        int expectedIdLocation = 77;
+        assertEquals(expectedIdLocation, location.getId());
+    }
+
+    @Test
+    void SetName(){
+        location.setName("Avellaneda");
+        String expectedName = "Avellaneda";
+        assertEquals(expectedName, location.getName());
+    }
+
+    @Test
+    void SetProvince(){
+        location.setProvince("Salta");
+        String expectedProvinceName = "Salta";
+        assertEquals(expectedProvinceName, location.getProvince());
+    }
+
+    @Test
+    void SetPopulation(){
+        location.setPopulation(999);
+        int expectedPopulationAmount = 999;
+        assertEquals(expectedPopulationAmount, location.getPopulation());
+    }
+
+    @Test
+    void SetConnectivityStatusTest(){
+        location.setStatus("En linea");
+        String connectivityStatusExpected = "En linea";
+        assertEquals(connectivityStatusExpected, location.getStatus());
     }
     
 }

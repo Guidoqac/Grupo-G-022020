@@ -1,13 +1,9 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
 
 public class Application {
 
@@ -34,7 +30,7 @@ public class Application {
     }
 
     public List<Project> getOpenProjects(){
-        return projects.stream().filter(p -> p.getIsOpen()).collect(Collectors.toList());
+        return projects.stream().filter(p -> p.isOpen()).collect(Collectors.toList());
     }
 
     //Precond. : Existe el proyecto en la aplicacion.

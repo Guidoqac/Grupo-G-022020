@@ -4,8 +4,6 @@ package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Qualification;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class QualificationTest {
@@ -19,37 +17,37 @@ class QualificationTest {
     }
 
     @Test
-    void getIdQualificationTest(){
+    void GetIdQualificationTest(){
         int expectedIdQualif = 0;
         assertEquals(expectedIdQualif, qualification.getIdQualification());
     }
 
     @Test
-    void getIdUserTest() {
+    void GetIdUserTest() {
         int expectedIdUser = 11;
         assertEquals(expectedIdUser, qualification.getIdUser());
     }
 
     @Test
-    void getIdLocationTest() {
+    void GetIdLocationTest() {
         int expectedIdLocation = 33;
         assertEquals(expectedIdLocation, qualification.getIdLocation());
     }
 
     @Test
-    void getIdDonationTest() {
+    void GetIdDonationTest() {
         int expectedIdDonation = 12;
         assertEquals(expectedIdDonation, qualification.getIdDonation());
     }
 
     @Test
-    void getScoreTest() {
+    void GetScoreTest() {
         int expectedScore = 7;
         assertEquals(expectedScore, qualification.getScore());
     }
 
     @Test
-    void getCommentTest() {
+    void GetCommentTest() {
         String expectedComment = "A beautiful comment";
         assertEquals(expectedComment, qualification.getComment());
     }
