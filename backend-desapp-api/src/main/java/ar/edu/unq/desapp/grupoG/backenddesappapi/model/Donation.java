@@ -1,5 +1,7 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
+import java.time.LocalDate;
+
 public class Donation {
 
 	private Integer id;
@@ -9,6 +11,9 @@ public class Donation {
     private Integer idProject;
     
     private double amount;
+    
+    private LocalDate DonationDate;
+
 
     public Donation(Integer id, Integer idUser, Integer idProject, Double amount){
         this.id = id;
@@ -53,6 +58,14 @@ public class Donation {
 
 	public void setAmount(Double amount) {
 		this.amount = amount;
+	}
+
+	public LocalDate getDonationDate() {
+		return DonationDate;
+	}
+
+	public void setDonationDate(LocalDate donationDate) {
+		DonationDate = donationDate;
 	}
 
 }
