@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 public class Application {
 
+    private ArrayList<Reward> rewards = new ArrayList<Reward>();
+
     private ArrayList<User> users = new ArrayList<User>();
 
     private ArrayList<Project> projects = new ArrayList<Project>();
@@ -34,13 +36,13 @@ public class Application {
     }
 
     //Precond. : Existe el proyecto en la aplicacion.
-    public void donate(int idUser, int idProject, double amount){
+    public void donate(int idUser, int idProject, double amount, String comment){
         
         User userFinded = findUser(idUser);   
         Project projectFinded = findProject(idProject);
         
        //Usuario crea la donacion. El metodo nos devuelve una donacion
-        Donation donationByUser = userFinded.donate(idProject, amount);
+        Donation donationByUser = userFinded.donate(idProject, amount, comment);
 
         // Agregamos la donacion de dicho usuario al projecto encontrado.
         projectFinded.addDonation(donationByUser);
@@ -87,6 +89,10 @@ public class Application {
         return this.projects.size();
     }
 
+    public ArrayList<Reward> getRewards(){
+        return this.rewards;
+    }
+
     public void setProjects(ArrayList<Project> projects){
         this.projects = projects;
     }
@@ -114,13 +120,34 @@ public class Application {
     }
     
     //Precond. : Existe el usuario en la aplicacion.
-    public User findUser(int idUser){
+    public User findUser(int idUser) {
         User userFinded = null;
         for (User i : this.users) {
-            if(i.getIdUser() == idUser){
-            	userFinded = i;
+            if (i.getIdUser() == idUser) {
+                userFinded = i;
             }
         }
         return userFinded;
     }
+
+    public void addReward(Reward reward){
+        this.rewards.add(reward);
+    }
+
+    public void exchange(int idUser, Reward reward){
+        User userFinded = findUser(idUser);
+        if(canExchange(userFinded.getPoints(), reward.getPoints())){
+            userFinded.addReward(reward);
+            this.removePoints(userFinded, reward.getPoints());
+        }
+    }
+
+    public boolean canExchange(int userPoints, int rewardPoints){
+        return userPoints >= rewardPoints;
+    }
+
+    public void removePoints(User user, int amount){
+        user.setPoints(user.getPoints() - amount);
+    }
+
 }

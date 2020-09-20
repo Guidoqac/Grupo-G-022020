@@ -1,5 +1,7 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
+import java.util.ArrayList;
+
 public class User {
 
     private int idUser;
@@ -9,6 +11,7 @@ public class User {
     private String password;
     private String email;
     private int points;
+    private ArrayList<Reward> rewards;
 
     public User(int idUser, String name, String surname, String nick, String password, String email){
         this.idUser = idUser;
@@ -17,6 +20,7 @@ public class User {
         this.nick = nick;
         this.password = password;
         this.email = email;
+        this.rewards = new ArrayList<Reward>();
     }
 
     public int getIdUser(){ return this.idUser; }
@@ -45,9 +49,17 @@ public class User {
 		this.points = points;
 	}
 	
-	public Donation donate(int idProject, double amount) {
-        Donation newDonation = new Donation(this.getIdUser(), idProject, amount);
+	public Donation donate(int idProject, double amount, String comment) {
+        Donation newDonation = new Donation(this.getIdUser(), idProject, amount, comment);
         return newDonation;
 	}
+
+	public void addReward(Reward reward){
+        this.rewards.add(reward);
+    }
+
+    public ArrayList<Reward> getRewards() {
+        return rewards;
+    }
 
 }

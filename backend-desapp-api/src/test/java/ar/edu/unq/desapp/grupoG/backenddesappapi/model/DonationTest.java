@@ -12,10 +12,13 @@ public class DonationTest {
 
 	private Donation donationWithoutId;
 
+	private String comment;
+
     @BeforeEach
     void setUp() {
-        donation = new Donation(0, 1, 2, 5000.45);
-        donationWithoutId = new Donation(1, 3, 50.5);
+        comment = "A beautiful comment";
+        donation = new Donation(0, 1, 2, 5000.45, comment);
+        donationWithoutId = new Donation(1, 3, 50.5, comment);
     }
 
     @Test
@@ -73,6 +76,18 @@ public class DonationTest {
         donation.setAmount(8000.0);
         double expectedAmount = 8000.0;
         assertEquals(expectedAmount, donation.getAmount());
+    }
+
+    @Test
+    void getCommentTest(){
+        assertEquals(comment, donation.getComment());
+    }
+
+    @Test
+    void setCommentTest(){
+        String newComment = "relleno";
+        donation.setComment(newComment);
+        assertEquals(newComment, donation.getComment());
     }
 
 }
