@@ -14,15 +14,18 @@ public class Donation {
     
     private LocalDate DonationDate;
 
+	private String comment;
 
-    public Donation(Integer id, Integer idUser, Integer idProject, Double amount){
+    public Donation(Integer id, Integer idUser, Integer idProject, Double amount, String comment){
+    	this.comment = comment;
         this.id = id;
         this.idUser = idUser;
         this.idProject = idProject;
         this.amount = amount;
     }
-    
-    public Donation(Integer idUser, Integer idProject, Double amount){
+
+    public Donation(Integer idUser, Integer idProject, Double amount, String comment){
+    	this.comment = comment;
         this.idUser = idUser;
         this.idProject = idProject;
         this.amount = amount;
@@ -64,8 +67,12 @@ public class Donation {
 		return DonationDate;
 	}
 
-	public void setDonationDate(LocalDate donationDate) {
-		DonationDate = donationDate;
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 }

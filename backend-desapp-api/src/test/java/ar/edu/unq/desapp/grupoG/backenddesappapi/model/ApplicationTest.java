@@ -5,10 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class ApplicationTest {
 
@@ -17,8 +16,6 @@ class ApplicationTest {
     private User userGuido;
     
     private User userGonza;
-
-    private User userMock;
     
     private ArrayList<User> users = new ArrayList<User>();
 
@@ -54,13 +51,19 @@ class ApplicationTest {
 
     private Donation donMock2;
 
+    private String comment;
+
+    private Reward rewardMock1;
+
+    private Reward rewardMock2;
+
     @BeforeEach
     void setUp() {
 
+        comment = "codacy pls";
     	userGuido = new User(0, "Guido", "Mon", "guidito", "Python", "guido@gmail.com");
     	userGonza = new User(1, "Gonza", "veron", "gonzy", "JS", "gonza@gmail.com");
-    	
-    	userMock = mock(User.class);
+
         projects = new ArrayList<Project>();
         donations = new ArrayList<Donation>();
         projMock1 = mock(Project.class);
@@ -107,9 +110,9 @@ class ApplicationTest {
         when(projMock2.getCloseProjectDate()).thenReturn(projMock2CloseDate);
         when(projMock3.getCloseProjectDate()).thenReturn(projMock3CloseDate);        
         when(projMock4.getCloseProjectDate()).thenReturn(projMock4CloseDate);        
-        when(projMock5.getCloseProjectDate()).thenReturn(projMock5CloseDate);        
-        
-        
+        when(projMock5.getCloseProjectDate()).thenReturn(projMock5CloseDate);
+
+
         locationMock = mock(Location.class);
         locationMock2 = mock(Location.class);
         
@@ -130,11 +133,12 @@ class ApplicationTest {
         
         when(projMock5.getLocation()).thenReturn(locationMock);
         when(projMock5.alreadyDonate(0)).thenReturn(false);
-        
-        when(userMock.getPoints()).thenReturn(2000);
-        
 
-        
+        rewardMock1 = mock(Reward.class);
+        rewardMock2 = mock(Reward.class);
+        when(rewardMock1.getPoints()).thenReturn(500);
+        when(rewardMock2.getPoints()).thenReturn(2500);
+
         app = new Application();
     }
 
@@ -182,8 +186,8 @@ class ApplicationTest {
     void donateTest(){
     	app.setUsers(users);
         app.setProjects(projects);
-        app.donate(0, 2, 100000.0);
-        app.donate(1, 2, 10.0);
+        app.donate(0, 2, 100000.0, comment);
+        app.donate(1, 2, 10.0, comment);
         int donationsExpected = 2;
         assertEquals(donationsExpected, app.countDonationsByProject(2));
     }
@@ -192,7 +196,7 @@ class ApplicationTest {
     void donateTest1(){
     	app.setUsers(users);
         app.setProjects(projects);
-        app.donate(0, 2, 1000.0);
+        app.donate(0, 2, 1000.0, comment);
         int pointsExpected = 1000;
         assertEquals(pointsExpected, userGuido.getPoints());
     }
@@ -201,7 +205,7 @@ class ApplicationTest {
     void donateTest1b(){
     	app.setUsers(users);
         app.setProjects(projects);
-        app.donate(0, 3, 1000.0);
+        app.donate(0, 3, 1000.0, comment);
         int pointsExpected = 1500;
         assertEquals(pointsExpected, userGuido.getPoints());
     }
@@ -210,7 +214,7 @@ class ApplicationTest {
     void donateTest2(){
     	app.setUsers(users);
         app.setProjects(projects);
-        app.donate(0, 1, 1000.0);
+        app.donate(0, 1, 1000.0, comment);
         int pointsExpected = 2000;
         assertEquals(pointsExpected, userGuido.getPoints());
     }
@@ -219,7 +223,7 @@ class ApplicationTest {
     void donateTest2b(){
     	app.setUsers(users);
         app.setProjects(projects);
-        app.donate(0, 4, 1000.0);
+        app.donate(0, 4, 1000.0, comment);
         int pointsExpected = 2500;
         assertEquals(pointsExpected, userGuido.getPoints());
     }
@@ -228,7 +232,7 @@ class ApplicationTest {
     void donateTest3(){
     	app.setUsers(users);
         app.setProjects(projects);
-        app.donate(0, 5, 500.0);
+        app.donate(0, 5, 500.0, comment);
         int pointsExpected = 100;
         assertEquals(pointsExpected, userGuido.getPoints());
     }
@@ -237,8 +241,36 @@ class ApplicationTest {
     void donateTest3b(){
     	app.setUsers(users);
         app.setProjects(projects);
-        app.donate(0, 3, 500.0);
+        app.donate(0, 3, 500.0, comment);
         int pointsExpected = 600;
+        assertEquals(pointsExpected, userGuido.getPoints());
+    }
+
+    @Test
+    void addRewardTest(){
+        app.addReward(rewardMock1);
+        app.addReward(rewardMock2);
+        int amountExpected = 2;
+        assertEquals(amountExpected, app.getRewards().size());
+    }
+
+    @Test
+    void canExchangeTrueTest(){
+        userGuido.setPoints(5000);
+        assertTrue(app.canExchange(userGuido.getPoints(), rewardMock1.getPoints()));
+    }
+
+    @Test
+    void canExchangeFalseTest(){
+        userGonza.setPoints(200);
+        assertFalse(app.canExchange(userGonza.getPoints(), rewardMock2.getPoints()));
+    }
+
+    @Test
+    void removePointsTest(){
+        userGuido.setPoints(5000);
+        app.removePoints(userGuido, rewardMock1.getPoints());
+        int pointsExpected = 4500;
         assertEquals(pointsExpected, userGuido.getPoints());
     }
 
