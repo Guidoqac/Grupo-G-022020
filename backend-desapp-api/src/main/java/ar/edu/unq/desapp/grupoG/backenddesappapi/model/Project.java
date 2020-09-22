@@ -14,6 +14,7 @@ public class Project {
     private LocalDate closeProjectDate;
     private LocalDate startProjectDate;
     private ArrayList<Donation> donations;
+    private LocalDate lastDonationDate;
     private boolean isClosed;
 
     public Project(int idProject, Location location, int factor, Double minPercentProjectClosure, String projectFantasyName, LocalDate closeProjectDate, LocalDate startProjectDate) {
@@ -24,6 +25,7 @@ public class Project {
         this.projectFantasyName = projectFantasyName;
         this.closeProjectDate = closeProjectDate;
         this.startProjectDate = startProjectDate;
+        this.lastDonationDate = startProjectDate;
         this.donations = new ArrayList<Donation>();
         this.isClosed = false;
     }
@@ -107,7 +109,15 @@ public class Project {
     public void addDonation(Donation donation){
         this.donations.add(donation);
     }
-    
+
+    public LocalDate getLastDonationDate(){
+        return this.lastDonationDate;
+    }
+
+    public void setLastDonationDate(LocalDate ld){
+        this.lastDonationDate = ld;
+    }
+
     public boolean alreadyDonate(int idUser) {
     	boolean donate = false;
     	Iterator<Donation> iteratorDonations = donations.iterator();
@@ -122,5 +132,4 @@ public class Project {
     	}
     	return donate;
     }
-    
 }

@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class User {
@@ -50,7 +51,7 @@ public class User {
 	}
 	
 	public Donation donate(int idProject, double amount, String comment) {
-        Donation newDonation = new Donation(this.getIdUser(), idProject, amount, comment);
+        Donation newDonation = new Donation(this.getIdUser(), idProject, amount, comment, LocalDate.now());
         return newDonation;
 	}
 
