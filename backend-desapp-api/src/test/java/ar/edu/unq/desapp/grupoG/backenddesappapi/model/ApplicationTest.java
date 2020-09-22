@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -63,6 +65,8 @@ class ApplicationTest {
         comment = "codacy pls";
     	userGuido = new User(0, "Guido", "Mon", "guidito", "Python", "guido@gmail.com");
     	userGonza = new User(1, "Gonza", "veron", "gonzy", "JS", "gonza@gmail.com");
+        userGuido.setPoints(5000);
+        userGonza.setPoints(200);
 
         projects = new ArrayList<Project>();
         donations = new ArrayList<Donation>();
@@ -256,22 +260,176 @@ class ApplicationTest {
 
     @Test
     void canExchangeTrueTest(){
-        userGuido.setPoints(5000);
         assertTrue(app.canExchange(userGuido.getPoints(), rewardMock1.getPoints()));
     }
 
     @Test
     void canExchangeFalseTest(){
-        userGonza.setPoints(200);
         assertFalse(app.canExchange(userGonza.getPoints(), rewardMock2.getPoints()));
     }
 
     @Test
     void removePointsTest(){
-        userGuido.setPoints(5000);
         app.removePoints(userGuido, rewardMock1.getPoints());
         int pointsExpected = 4500;
         assertEquals(pointsExpected, userGuido.getPoints());
+    }
+
+    @Test
+    void exchangeTest(){
+        app.setUsers(users);
+        app.exchange(0, rewardMock1);
+        int pointsExpected = 4500;
+        assertEquals(pointsExpected, userGuido.getPoints());
+    }
+
+    @Test
+    void top10DonationsTest(){
+
+        Project proj1 = mock(Project.class);
+        Project proj2 = mock(Project.class);
+        Project proj3 = mock(Project.class);
+
+        ArrayList<Project> projs = new ArrayList<Project>();
+        projs.add(proj1);
+        projs.add(proj2);
+        projs.add(proj3);
+
+        Donation don1 = mock(Donation.class);
+        Donation don2 = mock(Donation.class);
+        Donation don3 = mock(Donation.class);
+        Donation don4 = mock(Donation.class);
+        Donation don5 = mock(Donation.class);
+        Donation don6 = mock(Donation.class);
+        Donation don7 = mock(Donation.class);
+        Donation don8 = mock(Donation.class);
+
+        ArrayList<Donation> donsP1 = new ArrayList<Donation>();
+        donsP1.add(don1);
+        donsP1.add(don2);
+        donsP1.add(don3);
+
+        ArrayList<Donation> donsP2 = new ArrayList<Donation>();
+        donsP2.add(don4);
+        donsP2.add(don5);
+        donsP2.add(don6);
+
+        ArrayList<Donation> donsP3 = new ArrayList<Donation>();
+        donsP3.add(don7);
+        donsP3.add(don8);
+
+        proj1.setDonations(donsP1);
+        proj2.setDonations(donsP2);
+        proj3.setDonations(donsP3);
+
+        when(proj1.getDonations()).thenReturn(donsP1);
+        when(proj2.getDonations()).thenReturn(donsP2);
+        when(proj3.getDonations()).thenReturn(donsP3);
+
+        when(don1.getAmount()).thenReturn(10000.0);
+        when(don2.getAmount()).thenReturn(15000.0);
+        when(don3.getAmount()).thenReturn(5000.0);
+        when(don4.getAmount()).thenReturn(3000.0);
+        when(don5.getAmount()).thenReturn(2000.0);
+        when(don6.getAmount()).thenReturn(30000.0);
+        when(don7.getAmount()).thenReturn(8000.0);
+        when(don8.getAmount()).thenReturn(500.0);
+
+        app.setProjects(projs);
+
+        List<Donation> donations = app.top10Donations();
+
+        List<Double> numbersExpected = new ArrayList<>();
+        numbersExpected.add(30000.0);
+        numbersExpected.add(15000.0);
+        numbersExpected.add(10000.0);
+        numbersExpected.add(8000.0);
+        numbersExpected.add(5000.0);
+        numbersExpected.add(3000.0);
+        numbersExpected.add(2000.0);
+        numbersExpected.add(500.0);
+
+        List<Double> actualNumbers = donations.stream().map(d -> d.getAmount()).collect(Collectors.toList());
+
+        assertIterableEquals(numbersExpected, actualNumbers);
+    }
+
+    @Test
+    void top10ProjectsWithoutRecentDonationsTest() {
+
+        ArrayList<Project> projs = new ArrayList<Project>();
+
+        Project proj1 = mock(Project.class);
+        Project proj2 = mock(Project.class);
+        Project proj3 = mock(Project.class);
+        Project proj4 = mock(Project.class);
+        Project proj5 = mock(Project.class);
+        Project proj6 = mock(Project.class);
+        Project proj7 = mock(Project.class);
+        Project proj8 = mock(Project.class);
+
+        Location loc1 = mock(Location.class);
+        Location loc2 = mock(Location.class);
+        Location loc3 = mock(Location.class);
+        Location loc4 = mock(Location.class);
+        Location loc5 = mock(Location.class);
+        Location loc6 = mock(Location.class);
+        Location loc7 = mock(Location.class);
+        Location loc8 = mock(Location.class);
+
+        projs.add(proj1);
+        projs.add(proj2);
+        projs.add(proj3);
+        projs.add(proj4);
+        projs.add(proj5);
+        projs.add(proj6);
+        projs.add(proj7);
+        projs.add(proj8);
+
+        when(proj1.getLastDonationDate()).thenReturn(LocalDate.of(2005, 7, 19));
+        when(proj2.getLastDonationDate()).thenReturn(LocalDate.of(2019, 2, 27));
+        when(proj3.getLastDonationDate()).thenReturn(LocalDate.of(2010, 1, 15));
+        when(proj4.getLastDonationDate()).thenReturn(LocalDate.of(1996, 4, 25));
+        when(proj5.getLastDonationDate()).thenReturn(LocalDate.of(2007, 11, 30));
+        when(proj6.getLastDonationDate()).thenReturn(LocalDate.of(2007, 9, 10));
+        when(proj7.getLastDonationDate()).thenReturn(LocalDate.of(2001, 4, 13));
+        when(proj8.getLastDonationDate()).thenReturn(LocalDate.of(2005, 3, 12));
+
+        when(proj1.getLocation()).thenReturn(loc1);
+        when(proj2.getLocation()).thenReturn(loc2);
+        when(proj3.getLocation()).thenReturn(loc3);
+        when(proj4.getLocation()).thenReturn(loc4);
+        when(proj5.getLocation()).thenReturn(loc5);
+        when(proj6.getLocation()).thenReturn(loc6);
+        when(proj7.getLocation()).thenReturn(loc7);
+        when(proj8.getLocation()).thenReturn(loc8);
+
+        when(loc1.getName()).thenReturn("La Matanza");
+        when(loc2.getName()).thenReturn("Lanus");
+        when(loc3.getName()).thenReturn("Avellaneda");
+        when(loc4.getName()).thenReturn("Florencio Varela");
+        when(loc5.getName()).thenReturn("Ezeiza");
+        when(loc6.getName()).thenReturn("Dolores");
+        when(loc7.getName()).thenReturn("Berazategui");
+        when(loc8.getName()).thenReturn("Villa Gesell");
+
+        app.setProjects(projs);
+
+        List<Location> projectos = app.top10ProjectsWithoutRecentDonations();
+
+        List<String> namesExpected = new ArrayList<String>();
+        namesExpected.add("Florencio Varela");
+        namesExpected.add("Berazategui");
+        namesExpected.add("Villa Gesell");
+        namesExpected.add("La Matanza");
+        namesExpected.add("Dolores");
+        namesExpected.add("Ezeiza");
+        namesExpected.add("Avellaneda");
+        namesExpected.add("Lanus");
+
+        List<String> actual = projectos.stream().map(l -> l.getName()).collect(Collectors.toList());
+
+        assertIterableEquals(namesExpected, actual);
     }
 
 }

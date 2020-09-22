@@ -17,8 +17,6 @@ public class Application {
 
     private int nextIdProject = 0;
 
-    private int nextIdDonation = 0;
-
     public void register(String name, String surname, String email, String password, String nick){
         User newUser = new User(this.nextIdUser, name, surname, nick, password, email);
         this.nextIdUser++;
@@ -44,8 +42,9 @@ public class Application {
        //Usuario crea la donacion. El metodo nos devuelve una donacion
         Donation donationByUser = userFinded.donate(idProject, amount, comment);
 
-        // Agregamos la donacion de dicho usuario al projecto encontrado.
+        // Agregamos la donacion de dicho usuario al proyecto encontrado.
         projectFinded.addDonation(donationByUser);
+        projectFinded.setLastDonationDate(donationByUser.getDonationDate());
         
         // SISTEMA DE PUNTOS
         int pointsUser = 0;
@@ -135,7 +134,7 @@ public class Application {
     }
 
     public void exchange(int idUser, Reward reward){
-        User userFinded = findUser(idUser);
+        User userFinded = this.findUser(idUser);
         if(canExchange(userFinded.getPoints(), reward.getPoints())){
             userFinded.addReward(reward);
             this.removePoints(userFinded, reward.getPoints());
@@ -148,6 +147,19 @@ public class Application {
 
     public void removePoints(User user, int amount){
         user.setPoints(user.getPoints() - amount);
+    }
+
+    public List<Donation> top10Donations(){
+        List<Donation> donations = this.projects.stream().flatMap(project -> project.getDonations().stream()).collect(Collectors.toList());
+        donations.sort((d1, d2) -> (int) (d2.getAmount() - d1.getAmount()));
+
+        return (donations.size() > 10) ? donations.subList(0, 10) : donations;
+    }
+
+    public List<Location> top10ProjectsWithoutRecentDonations(){
+        this.projects.sort((p1, p2) -> p1.getLastDonationDate().compareTo(p2.getLastDonationDate()));
+        List<Location> locations = projects.stream().map(project -> project.getLocation()).collect(Collectors.toList());
+        return (locations.size() > 10) ? locations.subList(0, 10) : locations;
     }
 
 }

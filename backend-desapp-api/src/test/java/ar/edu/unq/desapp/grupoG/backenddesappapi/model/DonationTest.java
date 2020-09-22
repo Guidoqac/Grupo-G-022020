@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 public class DonationTest {
 
 	private Donation donation;
@@ -14,11 +16,14 @@ public class DonationTest {
 
 	private String comment;
 
+	private LocalDate donationDate;
+
     @BeforeEach
     void setUp() {
+        donationDate = LocalDate.now();
         comment = "A beautiful comment";
-        donation = new Donation(0, 1, 2, 5000.45, comment);
-        donationWithoutId = new Donation(1, 3, 50.5, comment);
+        donation = new Donation(0, 1, 2, 5000.45, comment, donationDate);
+        donationWithoutId = new Donation(1, 3, 50.5, comment, donationDate);
     }
 
     @Test
@@ -88,6 +93,11 @@ public class DonationTest {
         String newComment = "relleno";
         donation.setComment(newComment);
         assertEquals(newComment, donation.getComment());
+    }
+
+    @Test
+    void getDonationDateTest(){
+        assertEquals(donationDate, donation.getDonationDate());
     }
 
 }

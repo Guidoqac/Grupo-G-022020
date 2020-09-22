@@ -166,6 +166,18 @@ class ProjectTest {
     @Test
     void alreadyDonateTest(){
         projectToninas.addDonation(donMock4);
-        assertEquals(true, projectToninas.alreadyDonate(1));
+        assertTrue(projectToninas.alreadyDonate(1));
+    }
+
+    @Test
+    void getLastDonationDateTest(){
+        assertEquals(startProjectDate, projectToninas.getLastDonationDate());
+    }
+
+    @Test
+    void setLastDonationDateTest(){
+        LocalDate newDate = LocalDate.of(1996, 4, 25);
+        projectToninas.setLastDonationDate(newDate);
+        assertEquals(newDate, projectToninas.getLastDonationDate());
     }
 }
