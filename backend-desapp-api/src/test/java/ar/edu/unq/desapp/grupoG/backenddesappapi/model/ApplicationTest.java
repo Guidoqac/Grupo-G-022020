@@ -179,12 +179,12 @@ class ApplicationTest {
         assertEquals(expectedProjects, app.getOpenProjects().size());
     }
 
-//    @Test
-//    void getNextProjectToEndTest(){
-//        app.setProjects(projects);
-//        int expectedProjects = 3;
-//        assertEquals(expectedProjects, app.getNextProjectToEnd().size());
-//    }
+    @Test
+    void getNextProjectToEndTest(){
+        app.setProjects(projects);
+        int expectedProjects = 3;
+        assertEquals(expectedProjects, app.getNextProjectToEnd().size());
+    }
 
     @Test
     void donateTest(){
