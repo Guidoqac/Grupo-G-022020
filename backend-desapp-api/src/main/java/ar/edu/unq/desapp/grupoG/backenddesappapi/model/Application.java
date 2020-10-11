@@ -44,7 +44,7 @@ public class Application {
 
         // Agregamos la donacion de dicho usuario al proyecto encontrado.
         projectFinded.addDonation(donationByUser);
-        projectFinded.setLastDonationDate(donationByUser.getDonationDate());
+        //projectFinded.setLastDonationDate(donationByUser.getDonationDate());
         
         // SISTEMA DE PUNTOS
         int pointsUser = 0;
@@ -152,7 +152,6 @@ public class Application {
     public List<Donation> top10Donations(){
         List<Donation> donations = this.projects.stream().flatMap(project -> project.getDonations().stream()).collect(Collectors.toList());
         donations.sort((d1, d2) -> (int) (d2.getAmount() - d1.getAmount()));
-
         return (donations.size() > 10) ? donations.subList(0, 10) : donations;
     }
 
@@ -161,5 +160,4 @@ public class Application {
         List<Location> locations = projects.stream().map(project -> project.getLocation()).collect(Collectors.toList());
         return (locations.size() > 10) ? locations.subList(0, 10) : locations;
     }
-
 }

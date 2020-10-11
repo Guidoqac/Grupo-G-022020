@@ -13,7 +13,7 @@ public class Project {
     private String projectFantasyName;
     private LocalDate closeProjectDate;
     private LocalDate startProjectDate;
-    private ArrayList<Donation> donations;
+    private ArrayList<Donation> donations; //Consultar duda
     private LocalDate lastDonationDate;
     private boolean isClosed;
 
