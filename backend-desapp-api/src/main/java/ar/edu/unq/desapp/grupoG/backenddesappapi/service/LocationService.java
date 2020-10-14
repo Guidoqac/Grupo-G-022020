@@ -1,25 +1,26 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.service;
 
-import ar.edu.unq.desapp.grupoG.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Donation;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Location;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.LocationRepository;
+
 @Service
-public class UserService {
+public class LocationService {
 
     @Autowired
-    private UserRepository repository;
-
+    private LocationRepository repository;
+    
     @Transactional
-    public User save(User model) {
+    public Location save(Location model) {
         return this.repository.save(model);
     }
 
     @Transactional
-    public User findById(Integer id){
+    public Location findById(Integer id){
         return this.repository.findById(id).get();
     }
 
