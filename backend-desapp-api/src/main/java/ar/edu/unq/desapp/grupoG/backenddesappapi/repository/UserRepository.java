@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoG.backenddesappapi.service;
+package ar.edu.unq.desapp.grupoG.backenddesappapi.repository;
 
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.User;
 import org.springframework.context.annotation.Configuration;

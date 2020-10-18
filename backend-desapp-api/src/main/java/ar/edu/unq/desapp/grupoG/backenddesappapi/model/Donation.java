@@ -1,11 +1,19 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
+
+import javax.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "donations")
 public class Donation {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-    
+
+	@Column
     private Integer idUser;
     
     private Integer idProject;

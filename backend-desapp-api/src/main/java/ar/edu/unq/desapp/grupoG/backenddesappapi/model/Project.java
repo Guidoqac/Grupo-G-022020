@@ -1,21 +1,59 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
+@Entity
 public class Project {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProject;
+
+    @Transient
     private Location location;
+
+    @Column
     private int factor;
+
+    @Column
     private Double minPercentProjectClosure;
+
+    @Column
     private String projectFantasyName;
+
+    @Column
     private LocalDate closeProjectDate;
+
+    @Column
     private LocalDate startProjectDate;
-    private ArrayList<Donation> donations; //Consultar duda
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Donation> donations;
+
+    @Column
     private LocalDate lastDonationDate;
+
+    @Column
     private boolean isClosed;
+
+    public Project(){
+
+    }
+
+    public Project(Location location, Double minPercentProjectClosure, String projectFantasyName, LocalDate closeProjectDate, LocalDate startProjectDate) {
+        this.location = location;
+        this.factor = 1000;
+        this.minPercentProjectClosure = minPercentProjectClosure;
+        this.projectFantasyName = projectFantasyName;
+        this.closeProjectDate = closeProjectDate;
+        this.startProjectDate = startProjectDate;
+        this.donations = new ArrayList<Donation>();
+        this.isClosed = false;
+    }
 
     public Project(int idProject, Location location, int factor, Double minPercentProjectClosure, String projectFantasyName, LocalDate closeProjectDate, LocalDate startProjectDate) {
         this.idProject = idProject;
@@ -90,7 +128,7 @@ public class Project {
         return this.donations.stream().mapToDouble(d -> d.getAmount()).sum();
     }
 
-    public ArrayList<Donation> getDonations(){
+    public List<Donation> getDonations(){
         return this.donations;
     }
 

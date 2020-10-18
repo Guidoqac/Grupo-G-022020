@@ -1,27 +1,40 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Reward {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReward;
 
-    private Integer idUser;
+    @Transient
+    private User user;
 
+    @Column
     private String description;
 
+    @Column
     private String code;
 
+    @Column
     private int points;
 
-    public Reward(Integer idReward, Integer idUser, String description, String code, int points){
+    public Reward(){
+
+    }
+
+    public Reward(Integer idReward, User user, String description, String code, int points){
         this.idReward = idReward;
-        this.idUser = idUser;
+        this.user = user;
         this.description = description;
         this.code = code;
         this.points = points;
     }
 
-    public Reward(Integer idUser, String description, String code, int points){
-        this.idUser = idUser;
+    public Reward(User user, String description, String code, int points){
+        this.user = user;
         this.description = description;
         this.code = code;
         this.points = points;
@@ -51,7 +64,7 @@ public class Reward {
         return idReward;
     }
 
-    public Integer getIdUser() {
-        return idUser;
+    public User getIdUser() {
+        return user;
     }
 }

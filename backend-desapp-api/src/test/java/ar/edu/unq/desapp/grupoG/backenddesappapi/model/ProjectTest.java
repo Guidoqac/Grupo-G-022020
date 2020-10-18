@@ -180,4 +180,5 @@ class ProjectTest {
         projectToninas.setLastDonationDate(newDate);
         assertEquals(newDate, projectToninas.getLastDonationDate());
     }
+
 }
