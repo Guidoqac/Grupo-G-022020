@@ -14,6 +14,8 @@ import java.security.cert.X509Certificate;
 
 class ArsatClientTest {
 
+	//commentario
+	
 //    private ArsatClient arsat;
 //
 //
