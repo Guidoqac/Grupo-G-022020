@@ -39,14 +39,10 @@ public class InitServiceInMemory {
         LocalDate closeProjectDate = LocalDate.now();
 
         Project project = new Project(locationToninas, 2000.0, "Salvemos a Las Toninas", closeProjectDate, startProjectDate);
-        //locationToninas.setProject(project);
+
         project.addDonation(don1);
         project.addDonation(don2);
         project.addDonation(don3);
-
-        //don1.setProject(project);
-        //don2.setProject(project);
-        //don3.setProject(project);
 
         project.setLastDonationDate(LocalDate.now());
 
