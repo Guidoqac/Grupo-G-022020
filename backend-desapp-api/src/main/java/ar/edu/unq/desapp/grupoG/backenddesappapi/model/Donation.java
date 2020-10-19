@@ -13,16 +13,27 @@ public class Donation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	//@ManyToOne
+	//private Project project;
+
 	@Column
     private Integer idUser;
-    
+
+	@Column
     private Integer idProject;
-    
+
+	@Column
     private double amount;
-    
+
+	@Column
     private LocalDate donationDate;
 
+	@Column
 	private String comment;
+
+	public Donation(){
+
+	}
 
     public Donation(Integer id, Integer idUser, Integer idProject, Double amount, String comment, LocalDate donationDate){
     	this.comment = comment;
@@ -84,5 +95,13 @@ public class Donation {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
+	//public void setProject(Project project){
+    //	this.project = project;
+	//}
+
+	//public Project getProject(){
+    //	return this.project;
+	//}
 
 }

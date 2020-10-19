@@ -10,21 +10,21 @@ import org.springframework.transaction.annotation.Transactional;
 public class RewardService {
 
     @Autowired
-    private RewardRepository repository;
+    private RewardRepository rewardRepository;
 
     @Transactional
     public Reward save(Reward model) {
-        return this.repository.save(model);
+        return this.rewardRepository.save(model);
     }
 
     @Transactional
     public Reward findById(Integer id){
-        return this.repository.findById(id).get();
+        return this.rewardRepository.findById(id).get();
     }
 
     @Transactional
     public void deleteById(Integer id){
-        this.repository.deleteById(id);
+        this.rewardRepository.deleteById(id);
     }
 
 }

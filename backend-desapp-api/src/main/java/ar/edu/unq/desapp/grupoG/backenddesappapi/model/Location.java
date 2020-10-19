@@ -9,6 +9,9 @@ public class Location {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	//@OneToOne(cascade = CascadeType.ALL)
+	//private Project project;
+
 	@Column
     private String name;
 
@@ -79,5 +82,24 @@ public class Location {
 	public void setStatus(String status) {
 		this.connectivityStatus = status;
 	}
-    
+
+	@Override
+	public String toString() {
+		return "Location{" +
+				"id=" + id +
+				//", project=" + project +
+				", name='" + name + '\'' +
+				", province='" + province + '\'' +
+				", population=" + population +
+				", connectivityStatus='" + connectivityStatus + '\'' +
+				'}';
+	}
+
+	//public void setProject(Project project){
+	//	this.project = project;
+	//}
+
+	//public Project getProject(){
+	//	return this.project;
+	//}
 }
