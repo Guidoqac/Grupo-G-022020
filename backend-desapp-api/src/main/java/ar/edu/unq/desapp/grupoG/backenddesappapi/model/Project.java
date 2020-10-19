@@ -1,5 +1,8 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,7 +16,7 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProject;
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL)
     private Location location;
 
     @Column
@@ -31,7 +34,8 @@ public class Project {
     @Column
     private LocalDate startProjectDate;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SELECT)
     private List<Donation> donations;
 
     @Column
@@ -170,4 +174,5 @@ public class Project {
     	}
     	return donate;
     }
+
 }

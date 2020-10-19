@@ -79,5 +79,17 @@ public class Location {
 	public void setStatus(String status) {
 		this.connectivityStatus = status;
 	}
-    
+
+	@Override
+	public String toString() {
+		return "Location{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", province='" + province + '\'' +
+				", population=" + population +
+				", connectivityStatus='" + connectivityStatus + '\'' +
+				'}';
+	}
+
+
 }
