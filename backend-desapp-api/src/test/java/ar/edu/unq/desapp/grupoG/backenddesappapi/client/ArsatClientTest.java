@@ -14,19 +14,19 @@ import java.security.cert.X509Certificate;
 
 class ArsatClientTest {
 
-    private ArsatClient arsat;
-
-
-    @BeforeEach
-    void setUp() {
-        arsat = new ArsatClient(new RestTemplateBuilder());
-        arsat.disableSslVerification();
-    }
-
-    @Test
-    void getLocationsTest(){
-        ArsatData locations = arsat.getLocations();
-
-        System.out.println(locations.data);
-    }
+//    private ArsatClient arsat;
+//
+//
+//    @BeforeEach
+//    void setUp() {
+//        arsat = new ArsatClient(new RestTemplateBuilder());
+//        arsat.disableSslVerification();
+//    }
+//
+//    @Test
+//    void getLocationsTest(){
+//        ArsatData locations = arsat.getLocations();
+//
+//        System.out.println(locations.data);
+//    }
 }
