@@ -1,24 +1,24 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.service;
 
-import ar.edu.unq.desapp.grupoG.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.UserRepository;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Reward;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.RewardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserService {
+public class RewardService {
 
     @Autowired
-    private UserRepository repository;
+    private RewardRepository repository;
 
     @Transactional
-    public User save(User model) {
+    public Reward save(Reward model) {
         return this.repository.save(model);
     }
 
     @Transactional
-    public User findById(Integer id){
+    public Reward findById(Integer id){
         return this.repository.findById(id).get();
     }
 

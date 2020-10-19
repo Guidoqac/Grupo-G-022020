@@ -1,19 +1,38 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Location {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-    
+
+	@Column
     private String name;
-    
+
+	@Column
 	private String province;
-    
+
+	@Column
     private Integer population;
 
+	@Column
     private String connectivityStatus;
-	
+
+	public Location(){
+
+	}
+
+	public Location(String name, String province, Integer population, String status) {
+		this.name = name;
+		this.province = province;
+		this.population = population;
+		this.connectivityStatus = status;
+	}
+
 	public Location(Integer id, String name, String province, Integer population, String status) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.province = province;
