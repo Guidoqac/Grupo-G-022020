@@ -9,7 +9,7 @@ public class Reward {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idReward;
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
     @Column

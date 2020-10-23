@@ -10,21 +10,21 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProjectService {
 
     @Autowired
-    private ProjectRepository repository;
+    private ProjectRepository projectRepository;
 
     @Transactional
     public Project save(Project model) {
-        return this.repository.save(model);
+        return this.projectRepository.save(model);
     }
 
     @Transactional
     public Project findById(Integer id){
-        return this.repository.findById(id).get();
+        return this.projectRepository.findById(id).get();
     }
 
     @Transactional
     public void deleteById(Integer id){
-        this.repository.deleteById(id);
+        this.projectRepository.deleteById(id);
     }
 
 }

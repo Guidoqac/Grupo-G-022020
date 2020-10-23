@@ -10,21 +10,21 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
 
     @Transactional
     public User save(User model) {
-        return this.repository.save(model);
+        return this.userRepository.save(model);
     }
 
     @Transactional
     public User findById(Integer id){
-        return this.repository.findById(id).get();
+        return this.userRepository.findById(id).get();
     }
 
     @Transactional
     public void deleteById(Integer id){
-        this.repository.deleteById(id);
+        this.userRepository.deleteById(id);
     }
 
 }
