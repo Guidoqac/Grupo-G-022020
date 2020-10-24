@@ -22,8 +22,8 @@ public class DonationTest {
     void setUp() {
         donationDate = LocalDate.now();
         comment = "A beautiful comment";
-        donation = new Donation(0, 1, 2, 5000.45, comment, donationDate);
-        donationWithoutId = new Donation(1, 3, 50.5, comment, donationDate);
+        donation = new Donation(0, 1, 2, 5000.45, comment);
+        donationWithoutId = new Donation(1, 3, 50.5, comment);
     }
 
     @Test
