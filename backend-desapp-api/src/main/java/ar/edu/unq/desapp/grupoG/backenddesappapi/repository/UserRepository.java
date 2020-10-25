@@ -2,7 +2,9 @@ package ar.edu.unq.desapp.grupoG.backenddesappapi.repository;
 
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.User;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
@@ -14,5 +16,10 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     Optional<User> findById(Integer id);
 
     List<User> findAll();
+
+    //@Query(value = "SELECT * FROM USERS u WHERE u.EMAIL = :email AND u.PASSWORD = :password", nativeQuery = true)
+    //User findByEmailAndPassword(@Param("email") String userEmail, @Param("password") String userPassword);
+
+    Optional<User> findByEmailAndPassword(String email, String password);
 
 }
