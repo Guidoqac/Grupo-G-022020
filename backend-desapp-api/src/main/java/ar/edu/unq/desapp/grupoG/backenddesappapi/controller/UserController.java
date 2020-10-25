@@ -32,7 +32,7 @@ public class UserController {
 		userService.deleteById(id);
 	}
 
-	@GetMapping(path = "/login")
+	@PostMapping(path = "/login")
 	@ResponseBody
 	public User getUserByEmail(@RequestBody User user) {
 		return userService.findByEmailAndPassword(user.getEmail(), user.getPassword());

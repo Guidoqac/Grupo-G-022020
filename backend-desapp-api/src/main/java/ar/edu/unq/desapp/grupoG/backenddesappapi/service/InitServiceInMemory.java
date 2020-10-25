@@ -28,8 +28,8 @@ public class InitServiceInMemory {
     }
 
     private void fireInitialData() {
-        User user1 = new User("Gonza", "veron", "Spore", "2135", "gonza@gmail.com");
-        User user2 = new User("Guido", "Montorfano", "Quilmes", "1978", "guido@gmail.com");
+        User user1 = new User("Gonza", "veron", "Spore", "asdasdas", "gonza@gmail.com");
+        User user2 = new User("Guido", "Montorfano", "Quilmes", "12345", "guido@gmail.com");
         userService.save(user1);
         userService.save(user2);
 
