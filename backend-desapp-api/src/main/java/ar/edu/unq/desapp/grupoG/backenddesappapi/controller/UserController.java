@@ -6,6 +6,8 @@ import ar.edu.unq.desapp.grupoG.backenddesappapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("users")
 @CrossOrigin
@@ -28,6 +30,12 @@ public class UserController {
 	@DeleteMapping("/user/{id}")
 	void deleteEmployee(@PathVariable Integer id) {
 		userService.deleteById(id);
+	}
+
+	@GetMapping(path = "/login")
+	@ResponseBody
+	public User getUserByEmail(@RequestBody User user) {
+		return userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
 	}
 
 }
