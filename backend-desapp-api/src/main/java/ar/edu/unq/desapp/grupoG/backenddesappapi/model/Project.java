@@ -44,6 +44,15 @@ public class Project {
     @Column
     private boolean isClosed;
 
+    @Column
+    private int participants;
+
+    @Column
+    private int budgetCollected;
+
+    @Column
+    private double percentCollected;
+
     public Project(){
 
     }
@@ -57,6 +66,9 @@ public class Project {
         this.startProjectDate = startProjectDate;
         this.donations = new ArrayList<Donation>();
         this.isClosed = false;
+        this.participants = 0;
+        this.budgetCollected = 0;
+        this.percentCollected = 0.0;
     }
 
     public Project(int idProject, Location location, int factor, Double minPercentProjectClosure, String projectFantasyName, LocalDate closeProjectDate, LocalDate startProjectDate) {
@@ -70,6 +82,9 @@ public class Project {
         this.lastDonationDate = startProjectDate;
         this.donations = new ArrayList<Donation>();
         this.isClosed = false;
+        this.participants = 0;
+        this.budgetCollected = 0;
+        this.percentCollected = 0.0;
     }
 
     /* constructor para el factor por default */
@@ -149,7 +164,12 @@ public class Project {
     }
 
     public void addDonation(Donation donation){
+        if(!this.alreadyDonateInAnyMonth(donation.getIdUser())){
+            this.participants += 1;
+        }
         this.donations.add(donation);
+        this.budgetCollected += donation.getAmount();
+        this.percentCollected = this.budgetCollected * 100 / this.calculateBudget();
     }
 
     public LocalDate getLastDonationDate(){
@@ -175,4 +195,23 @@ public class Project {
     	return donate;
     }
 
+    public boolean alreadyDonateInAnyMonth(int idUser){
+        return this.donations.stream().anyMatch(d -> d.getIdUser() == idUser);
+    }
+
+    public boolean isClosed() {
+        return isClosed;
+    }
+
+    public int getParticipants() {
+        return participants;
+    }
+
+    public int getBudgetCollected() {
+        return budgetCollected;
+    }
+
+    public double getPercentCollected() {
+        return percentCollected;
+    }
 }

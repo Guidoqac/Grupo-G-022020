@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -59,6 +60,9 @@ class ProjectTest {
         
         when(donMock4.getDonationDate()).thenReturn(LocalDate.now());
         when(donMock4.getIdUser()).thenReturn(1);
+
+        when(donMock5.getDonationDate()).thenReturn(LocalDate.now());
+        when(donMock5.getIdUser()).thenReturn(1);
 
         projectToninas = new Project(0, locationToninas, 2000, 50.0, "Salvemos a Las Toninas", closeProjectDate, startProjectDate);
         projectDefaultFactor = new Project(1, locationToninas, 50.0, "Salvemos a Las Toninas 2", closeProjectDate, startProjectDate);
@@ -179,6 +183,87 @@ class ProjectTest {
         LocalDate newDate = LocalDate.of(1996, 4, 25);
         projectToninas.setLastDonationDate(newDate);
         assertEquals(newDate, projectToninas.getLastDonationDate());
+    }
+
+    @Test
+    void addParticipantTest(){
+        Donation donMock1 = mock(Donation.class);
+        Donation donMock2 = mock(Donation.class);
+        Donation donMock3 = mock(Donation.class);
+
+        when(donMock1.getIdUser()).thenReturn(1);
+        when(donMock1.getAmount()).thenReturn(500.0);
+        when(donMock1.getDonationDate()).thenReturn(LocalDate.of(2020, 01, 23));
+
+        when(donMock2.getIdUser()).thenReturn(2);
+        when(donMock2.getAmount()).thenReturn(5000.0);
+        when(donMock2.getDonationDate()).thenReturn(LocalDate.of(2020, 10, 24));
+
+        when(donMock3.getIdUser()).thenReturn(1);
+        when(donMock3.getAmount()).thenReturn(7000.0);
+        when(donMock3.getDonationDate()).thenReturn(LocalDate.of(2020, 10, 25));
+
+        projectToninas.addDonation(donMock1);
+        projectToninas.addDonation(donMock2);
+        projectToninas.addDonation(donMock3);
+
+        int participantsExpected = 2;
+
+        assertEquals(participantsExpected, projectToninas.getParticipants());
+    }
+
+    @Test
+    void incrementBudgetTest(){
+        Donation donMock1 = mock(Donation.class);
+        Donation donMock2 = mock(Donation.class);
+        Donation donMock3 = mock(Donation.class);
+
+        when(donMock1.getIdUser()).thenReturn(1);
+        when(donMock1.getAmount()).thenReturn(500.0);
+        when(donMock1.getDonationDate()).thenReturn(LocalDate.of(2020, 01, 23));
+
+        when(donMock2.getIdUser()).thenReturn(2);
+        when(donMock2.getAmount()).thenReturn(5000.0);
+        when(donMock2.getDonationDate()).thenReturn(LocalDate.of(2020, 10, 24));
+
+        when(donMock3.getIdUser()).thenReturn(1);
+        when(donMock3.getAmount()).thenReturn(7000.0);
+        when(donMock3.getDonationDate()).thenReturn(LocalDate.of(2020, 10, 25));
+
+        projectToninas.addDonation(donMock1);
+        projectToninas.addDonation(donMock2);
+        projectToninas.addDonation(donMock3);
+
+        int budgetExpected = 12500;
+
+        assertEquals(budgetExpected, projectToninas.getBudgetCollected());
+    }
+
+    @Test
+    void incrementPercentageTest(){
+        Donation donMock1 = mock(Donation.class);
+        Donation donMock2 = mock(Donation.class);
+        Donation donMock3 = mock(Donation.class);
+
+        when(donMock1.getIdUser()).thenReturn(1);
+        when(donMock1.getAmount()).thenReturn(500.0);
+        when(donMock1.getDonationDate()).thenReturn(LocalDate.of(2020, 01, 23));
+
+        when(donMock2.getIdUser()).thenReturn(2);
+        when(donMock2.getAmount()).thenReturn(5000.0);
+        when(donMock2.getDonationDate()).thenReturn(LocalDate.of(2020, 10, 24));
+
+        when(donMock3.getIdUser()).thenReturn(1);
+        when(donMock3.getAmount()).thenReturn(7000.0);
+        when(donMock3.getDonationDate()).thenReturn(LocalDate.of(2020, 10, 25));
+
+        projectToninas.addDonation(donMock1);
+        projectToninas.addDonation(donMock2);
+        projectToninas.addDonation(donMock3);
+
+        double percentExpected = 0.625;
+
+        assertEquals(percentExpected, projectToninas.getPercentCollected());
     }
 
 }
