@@ -95,9 +95,9 @@ public class DonationTest {
         assertEquals(newComment, donation.getComment());
     }
 
-    @Test
-    void getDonationDateTest(){
-        assertEquals(donationDate, donation.getDonationDate());
-    }
+//    @Test
+//    void getDonationDateTest(){
+//        assertEquals(donationDate, donation.getDonationDate());
+//    }
 
 }
