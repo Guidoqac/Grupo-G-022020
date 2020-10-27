@@ -6,7 +6,11 @@ import ar.edu.unq.desapp.grupoG.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.service.ProjectService;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
 
@@ -22,10 +26,9 @@ public class DonationController {
     private ProjectService projectService;
 
     @PostMapping(path = "/donate")
-    void donate(@RequestBody Donation donation){
+    public void donate(@RequestBody Donation donation){
         User userFound = userService.findById(donation.getIdUser());
         Project projectFound = projectService.findById(donation.getIdProject());
-        donation.setLocalDate(LocalDate.now());
 
         int pointsUser = this.calculatePoints(userFound, donation, projectFound);
 

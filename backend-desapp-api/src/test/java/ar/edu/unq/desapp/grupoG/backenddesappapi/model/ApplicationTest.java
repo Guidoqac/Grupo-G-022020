@@ -1,5 +1,5 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
-
+/*
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
+*/
 class ApplicationTest {
-
+/*
     private Application app;
     
     private User userGuido;
@@ -431,5 +431,5 @@ class ApplicationTest {
 
         assertIterableEquals(namesExpected, actual);
     }
-
+*/
 }

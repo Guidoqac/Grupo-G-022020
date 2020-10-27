@@ -1,6 +1,12 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 
 @Entity
 public class Reward {
@@ -64,7 +70,7 @@ public class Reward {
         return idReward;
     }
 
-    public User getIdUser() {
+    public User getUser() {
         return user;
     }
 }

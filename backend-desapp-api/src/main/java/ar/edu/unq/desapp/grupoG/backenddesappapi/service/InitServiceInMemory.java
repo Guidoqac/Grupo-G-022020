@@ -2,7 +2,6 @@ package ar.edu.unq.desapp.grupoG.backenddesappapi.service;
 
 import javax.annotation.PostConstruct;
 
-import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Donation;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Location;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.User;
