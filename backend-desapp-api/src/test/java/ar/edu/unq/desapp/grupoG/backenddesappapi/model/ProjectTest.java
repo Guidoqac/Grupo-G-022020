@@ -10,8 +10,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class ProjectTest {
-
-	private User userMock;
 	
     private Project projectToninas;
 
@@ -41,7 +39,7 @@ class ProjectTest {
         donMock4 = mock(Donation.class);
         donMock5 = mock(Donation.class);
         
-        userMock = mock(User.class);
+        User userMock = mock(User.class);
 
         donations.add(donMock1);
         donations.add(donMock2);
