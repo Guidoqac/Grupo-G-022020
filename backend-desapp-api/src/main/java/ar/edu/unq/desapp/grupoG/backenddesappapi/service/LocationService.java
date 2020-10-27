@@ -3,8 +3,6 @@ package ar.edu.unq.desapp.grupoG.backenddesappapi.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Donation;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Location;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.LocationRepository;
 

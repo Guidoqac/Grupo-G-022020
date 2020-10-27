@@ -1,18 +1,13 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.service;
 
-import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Donation;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Location;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
@@ -21,10 +16,6 @@ class ProjectServiceTest {
 
     @Autowired
     private ProjectService ps;
-
-    @Test
-    void save() {
-    }
 
     @Test
     void findById() {
@@ -57,7 +48,4 @@ class ProjectServiceTest {
         assertEquals(idExpected, projectFound.getIdProject());
     }
 
-    @Test
-    void deleteById() {
-    }
 }

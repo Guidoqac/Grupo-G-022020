@@ -2,26 +2,27 @@ package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class RewardTest {
 
-    //private Reward reward;
+    private Reward reward;
 
-    //private Reward rewardWithoutId;
+    private Reward rewardWithoutId;
+
+    private User user;
 
     @BeforeEach
     void setUp() {
         String description = "Descuento";
         String code = "102354gw1";
         int pointsNeeded = 500;
+        user = new User(0, "Gonza", "Veron", "Spore", "12345", "gonza@gmail.com");
 
-        //reward = new Reward(0, 1, description, code, pointsNeeded);
-        //rewardWithoutId = new Reward(2, description, code, pointsNeeded);
+        reward = new Reward(0, user, description, code, pointsNeeded);
+        rewardWithoutId = new Reward(user, description, code, pointsNeeded);
     }
 
-/*
     @Test
     void nullIdTest(){
         assertNull(rewardWithoutId.getIdReward());
@@ -67,9 +68,8 @@ class RewardTest {
 
     @Test
     void getIdUser() {
-        int idExpected = 1;
-        assertEquals(idExpected, reward.getIdUser());
+        User userExpected = user;
+        assertEquals(userExpected, reward.getUser());
     }
 
- */
 }

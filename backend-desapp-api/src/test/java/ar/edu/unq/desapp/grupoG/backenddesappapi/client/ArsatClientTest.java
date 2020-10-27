@@ -1,6 +1,6 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.client;
 
-
+/*
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.ArsatData;
 import net.minidev.json.writer.JsonReader;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +11,7 @@ import javax.net.ssl.*;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+*/
 
 class ArsatClientTest {
 

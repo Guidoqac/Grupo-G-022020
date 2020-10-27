@@ -1,7 +1,11 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
-import javax.persistence.*;
-
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Column;
 import java.time.LocalDate;
 
 @Entity
@@ -37,6 +41,7 @@ public class Donation {
 		this.idUser = idUser;
 		this.idProject = idProject;
 		this.amount = amount;
+		this.donationDate = LocalDate.now();
 	}
 
 	public Donation(Integer idUser, Integer idProject, Double amount, String comment) {
@@ -44,6 +49,7 @@ public class Donation {
 		this.idUser = idUser;
 		this.idProject = idProject;
 		this.amount = amount;
+		this.donationDate = LocalDate.now();
 	}
 
 	public Integer getId() {
@@ -88,10 +94,6 @@ public class Donation {
 
 	public void setComment(String comment) {
 		this.comment = comment;
-	}
-
-	public void setLocalDate(LocalDate donationDate){
-		this.donationDate = donationDate;
 	}
 
 	@Override

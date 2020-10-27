@@ -2,9 +2,6 @@ package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
@@ -16,16 +13,10 @@ class UserTest {
 
     private Reward rewardMock2;
 
-    private Reward rewardMock3;
-
-    private ArrayList<Reward> rewardsMock;
-
     @BeforeEach
     void setUp() {
         rewardMock1 = mock(Reward.class);
         rewardMock2 = mock(Reward.class);
-        rewardMock3 = mock(Reward.class);
-        rewardsMock = mock(ArrayList.class);
         user = new User(0, "Roque", "Pistone", "Rocky", "a1a2a3", "roco2020@gmail.com");
     }
 
