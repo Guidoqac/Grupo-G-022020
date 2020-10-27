@@ -1,8 +1,11 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -30,7 +33,9 @@ public class User {
     @Column
     private int points;
 
-    private ArrayList<Reward> rewards;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SELECT)
+    private List<Reward> rewards;
 
     public User(){
 
@@ -82,7 +87,7 @@ public class User {
 	}
 	
 	public Donation donate(int idProject, double amount, String comment) {
-        Donation newDonation = new Donation(this.getIdUser(), idProject, amount, comment, LocalDate.now());
+        Donation newDonation = new Donation(this.getIdUser(), idProject, amount, comment);
         return newDonation;
 	}
 
@@ -90,7 +95,7 @@ public class User {
         this.rewards.add(reward);
     }
 
-    public ArrayList<Reward> getRewards() {
+    public List<Reward> getRewards() {
         return rewards;
     }
 

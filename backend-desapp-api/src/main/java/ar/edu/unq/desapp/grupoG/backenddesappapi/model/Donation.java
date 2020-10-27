@@ -1,6 +1,5 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
-
 import javax.persistence.*;
 
 import java.time.LocalDate;
@@ -13,46 +12,41 @@ public class Donation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	//@ManyToOne
-	//private Project project;
+	@Column
+	private Integer idUser;
 
 	@Column
-    private Integer idUser;
+	private Integer idProject;
 
 	@Column
-    private Integer idProject;
+	private double amount;
 
 	@Column
-    private double amount;
-
-	@Column
-    private LocalDate donationDate;
+	private LocalDate donationDate;
 
 	@Column
 	private String comment;
 
-	public Donation(){
+	public Donation() {
 
 	}
 
-    public Donation(Integer id, Integer idUser, Integer idProject, Double amount, String comment, LocalDate donationDate){
-    	this.comment = comment;
-        this.id = id;
-        this.idUser = idUser;
-        this.idProject = idProject;
-        this.amount = amount;
-        this.donationDate = donationDate;
-    }
+	public Donation(Integer id, Integer idUser, Integer idProject, Double amount, String comment) {
+		this.comment = comment;
+		this.id = id;
+		this.idUser = idUser;
+		this.idProject = idProject;
+		this.amount = amount;
+	}
 
-    public Donation(Integer idUser, Integer idProject, Double amount, String comment, LocalDate donationDate){
-    	this.comment = comment;
-        this.idUser = idUser;
-        this.idProject = idProject;
-        this.amount = amount;
-		this.donationDate = donationDate;
-    }
+	public Donation(Integer idUser, Integer idProject, Double amount, String comment) {
+		this.comment = comment;
+		this.idUser = idUser;
+		this.idProject = idProject;
+		this.amount = amount;
+	}
 
-    public Integer getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -96,12 +90,19 @@ public class Donation {
 		this.comment = comment;
 	}
 
-	//public void setProject(Project project){
-    //	this.project = project;
-	//}
+	public void setLocalDate(LocalDate donationDate){
+		this.donationDate = donationDate;
+	}
 
-	//public Project getProject(){
-    //	return this.project;
-	//}
-
+	@Override
+	public String toString() {
+		return "Donation{" +
+				"id=" + id +
+				", idUser=" + idUser +
+				", idProject=" + idProject +
+				", amount=" + amount +
+				", donationDate=" + donationDate +
+				", comment='" + comment + '\'' +
+				'}';
+	}
 }
