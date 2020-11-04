@@ -106,4 +106,8 @@ public class User {
         return rewards;
     }
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 }

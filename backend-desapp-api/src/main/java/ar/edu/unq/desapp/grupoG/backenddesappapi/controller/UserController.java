@@ -1,15 +1,17 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.controller;
 
+import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Mensaje;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupoG.backenddesappapi.service.ProjectService;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("/auth")
 @CrossOrigin
 public class UserController {
 
@@ -36,6 +38,12 @@ public class UserController {
 	@ResponseBody
 	public User getUserByEmail(@RequestBody User user) {
 		return userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
+	}
+	
+	@PostMapping(path = "/register")
+	public ResponseEntity<?> registerUser(@RequestBody User user) {
+        userService.save(user);
+        return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
 	}
 
 }
