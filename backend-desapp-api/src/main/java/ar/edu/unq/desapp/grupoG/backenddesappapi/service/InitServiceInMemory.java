@@ -40,6 +40,7 @@ public class InitServiceInMemory {
         LocalDate startProjectDateT = LocalDate.of(1996, 04, 25);
         LocalDate closeProjectDateT = LocalDate.now();
         Project project1 = new Project(locationToninas, 2000.0, "Salvemos a Las Toninas", closeProjectDateT, startProjectDateT);
+        project1.closeProject();
 
         Location locationBernal = new Location("Bernal", "Buenos Aires", 7000, "Un status");
         LocalDate startProjectDateB = LocalDate.of(2020, 01, 13);

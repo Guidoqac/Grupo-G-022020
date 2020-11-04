@@ -30,11 +30,15 @@ public class DonationController {
         User userFound = userService.findById(donation.getIdUser());
         Project projectFound = projectService.findById(donation.getIdProject());
 
-        int pointsUser = this.calculatePoints(userFound, donation, projectFound);
+        
 
         projectFound.addDonation(donation);
         projectFound.setLastDonationDate(LocalDate.now());
+        
+        int pointsUser = this.calculatePoints(userFound, donation, projectFound);
+        
         userFound.setPoints(pointsUser);
+        
 
         userService.save(userFound);
         projectService.save(projectFound);
@@ -44,21 +48,21 @@ public class DonationController {
         int pointsUser = userFound.getPoints();
 
         // Si colabora en 1 proyecto con más de 1000 pesos, obtendrá la misma cantidad de puntos que pesos invertidos.
-        if (donation.getAmount() >= 1000.0 && (projectFound.getLocation().getPopulation() >= 2000) && projectFound.alreadyDonate(donation.getIdUser()) ) {
+        if (donation.getAmount() >= 1000.0 && (projectFound.getLocation().getPopulation() >= 2000) && projectFound.alreadyDonateInAnyMonth(donation.getIdUser()) ) {
             pointsUser = (int) (pointsUser + donation.getAmount()) + 500;
         } else if (donation.getAmount() >= 1000.0 && (projectFound.getLocation().getPopulation() >= 2000)) {
             pointsUser = (int) (pointsUser + donation.getAmount());
         }
 
         //Si colabora en 1 proyecto de una localidad de menos de 2000 habitantes, la cantidad de puntos será el doble de los pesos invertidos.
-        if ((projectFound.getLocation().getPopulation() < 2000) && projectFound.alreadyDonate(donation.getIdUser())) {
+        if ((projectFound.getLocation().getPopulation() < 2000) && projectFound.alreadyDonateInAnyMonth(donation.getIdUser())) {
             pointsUser = (int) ((pointsUser + donation.getAmount()) * 2 + 500);
 
         } else if (projectFound.getLocation().getPopulation() < 2000) {
             pointsUser = (int) ((pointsUser + donation.getAmount()) * 2);
         }
 
-        if ((projectFound.getLocation().getPopulation() >= 2000) && donation.getAmount() < 1000.0 && projectFound.alreadyDonate(donation.getIdUser())) {
+        if ((projectFound.getLocation().getPopulation() >= 2000) && donation.getAmount() < 1000.0 && projectFound.alreadyDonateInAnyMonth(donation.getIdUser())) {
             pointsUser = 100 + 500;
 
         } else if ((projectFound.getLocation().getPopulation() >= 2000) && donation.getAmount() < 1000.0) {

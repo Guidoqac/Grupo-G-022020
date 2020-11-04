@@ -43,5 +43,11 @@ public class ProjectController {
     public void deleteEmployee(@PathVariable Integer id) {
         projectService.deleteById(id);
     }
+    
+    @GetMapping(path = "/openProjects")
+    @ResponseBody
+    public List<Project> getOpenProjects(){
+        return projectService.findOpenProjects();
+    }
 
 }
