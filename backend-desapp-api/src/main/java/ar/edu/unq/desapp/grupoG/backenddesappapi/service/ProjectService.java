@@ -1,12 +1,8 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.service;
-
 import ar.edu.unq.desapp.grupoG.backenddesappapi.exceptions.MissingDataException;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.ProjectRepository;
-
 import java.time.LocalDate;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

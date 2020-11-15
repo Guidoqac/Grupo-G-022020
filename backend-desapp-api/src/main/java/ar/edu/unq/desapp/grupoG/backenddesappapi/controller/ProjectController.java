@@ -3,11 +3,11 @@ package ar.edu.unq.desapp.grupoG.backenddesappapi.controller;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.exceptions.MissingDataException;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.service.ProjectService;
-import java.util.List;
+
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
