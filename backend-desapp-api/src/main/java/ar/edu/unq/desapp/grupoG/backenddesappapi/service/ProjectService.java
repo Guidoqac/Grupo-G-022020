@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.service;
 
+import ar.edu.unq.desapp.grupoG.backenddesappapi.exceptions.MissingDataException;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.ProjectRepository;
 
@@ -16,8 +17,12 @@ public class ProjectService {
     private ProjectRepository projectRepository;
 
     @Transactional
-    public Project save(Project model) {
-        return this.projectRepository.save(model);
+    public Project save(Project model) throws Exception {
+        if(model.getLocation() != null){
+            return this.projectRepository.save(model);
+        }else{
+            throw new MissingDataException("Faltan datos del proyecto.");
+        }
     }
 
     @Transactional

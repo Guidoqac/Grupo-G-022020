@@ -1,10 +1,13 @@
-package ar.edu.unq.desapp.grupoG.backenddesappapi.service;
+package ar.edu.unq.desapp.grupoG.backenddesappapi;
 
 import javax.annotation.PostConstruct;
 
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Location;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.service.LocationService;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.service.ProjectService;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,11 +28,11 @@ public class InitServiceInMemory {
     private LocationService locationService;
 
     @PostConstruct
-    public void initialize() {
+    public void initialize() throws Exception {
         fireInitialData();
     }
 
-    private void fireInitialData() {
+    private void fireInitialData() throws Exception {
         User user1 = new User("Gonza", "veron", "Spore", "asdasdas", "gonza@gmail.com");
         User user2 = new User("Guido", "Montorfano", "Quilmes", "12345", "guido@gmail.com");
         userService.save(user1);
