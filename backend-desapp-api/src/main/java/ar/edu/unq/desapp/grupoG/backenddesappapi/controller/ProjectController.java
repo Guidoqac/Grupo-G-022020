@@ -1,18 +1,12 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.controller;
 
+import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Location;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.service.LocationService;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.service.ProjectService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("projects")
@@ -42,6 +36,12 @@ public class ProjectController {
     @DeleteMapping("/project/{id}")
     public void deleteEmployee(@PathVariable Integer id) {
         projectService.deleteById(id);
+    }
+
+    @GetMapping(path = "/projectsFromTo")
+    @ResponseBody
+    public List<Project> getProjectsFromTo(@RequestParam Integer from, @RequestParam Integer to){
+        return projectService.findProjectsFromTo(from, to);
     }
 
 }

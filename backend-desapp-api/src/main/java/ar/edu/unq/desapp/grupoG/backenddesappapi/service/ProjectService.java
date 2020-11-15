@@ -35,4 +35,9 @@ public class ProjectService {
         this.projectRepository.deleteById(id);
     }
 
+    @Transactional
+    public List<Project> findProjectsFromTo(Integer from, Integer to){
+        return this.projectRepository.findProjectsFromTo(from, to);
+    }
+
 }
