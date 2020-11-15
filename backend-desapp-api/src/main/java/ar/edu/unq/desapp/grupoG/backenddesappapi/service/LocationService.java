@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Location;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.LocationRepository;
 
+import java.util.List;
+
 @Service
 public class LocationService {
 

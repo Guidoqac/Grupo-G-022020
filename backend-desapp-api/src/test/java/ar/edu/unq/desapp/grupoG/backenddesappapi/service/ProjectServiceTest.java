@@ -18,7 +18,7 @@ class ProjectServiceTest {
     private ProjectService ps;
 
     @Test
-    void findById() {
+    void findById() throws Exception {
         //Donation don1 = new Donation(0, 1, 500.0 , "Buenisimo1",  LocalDate.now());
         //Donation don2 = new Donation(0, 1, 1500.0 , "Buenisimo2",  LocalDate.now());
         //Donation don3 = new Donation(0, 1, 2500.0 , "Buenisimo3",  LocalDate.now());
