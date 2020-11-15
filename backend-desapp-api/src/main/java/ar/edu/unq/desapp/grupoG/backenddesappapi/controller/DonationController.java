@@ -26,7 +26,7 @@ public class DonationController {
     private ProjectService projectService;
 
     @PostMapping(path = "/donate")
-    public void donate(@RequestBody Donation donation){
+    public void donate(@RequestBody Donation donation) throws Exception {
         User userFound = userService.findById(donation.getIdUser());
         Project projectFound = projectService.findById(donation.getIdProject());
 
