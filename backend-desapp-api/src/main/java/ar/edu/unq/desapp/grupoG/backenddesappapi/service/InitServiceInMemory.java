@@ -70,7 +70,7 @@ public class InitServiceInMemory {
         Project proj4 = new Project(loc4, 10.0, "Proj4", LocalDate.now(), LocalDate.now());
         Project proj5 = new Project(loc5, 10.0, "Proj5", LocalDate.now(), LocalDate.now());
         Project proj6 = new Project(loc6, 10.0, "Proj6", LocalDate.now(), LocalDate.now());
-        Project proj7 = new Project(loc7, 10.0, "Proj7", LocalDate.now(), LocalDate.now());
+        Project proj7 = new Project(loc7, 10.0, "Proj7", LocalDate.of(2020, 7, 22), LocalDate.now());
         Project proj8 = new Project(loc8, 10.0, "Proj8", LocalDate.now(), LocalDate.now());
         Project proj9 = new Project(loc9, 10.0, "Proj9", LocalDate.now(), LocalDate.now());
         Project proj10 = new Project(loc10, 10.0, "Proj10", LocalDate.now(), LocalDate.now());

@@ -40,4 +40,9 @@ public class ProjectService {
         return this.projectRepository.findProjectsFromTo(from, to);
     }
 
+    @Transactional
+    public List<Project> findProjectsCloseToFinish(Integer month){
+        return this.projectRepository.findProjectsCloseToFinish(month);
+    }
+
 }

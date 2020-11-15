@@ -18,7 +18,10 @@ public interface ProjectRepository extends CrudRepository<Project, Integer>{
 
     List<Project> findAll();
 
-    @Query(value = "SELECT * FROM PROJECT u LIMIT :fromRow, :toRow", nativeQuery = true)
+    @Query(value = "SELECT * FROM PROJECT p LIMIT :fromRow, :toRow", nativeQuery = true)
     List<Project> findProjectsFromTo(@Param("fromRow") Integer from, @Param("toRow") Integer to);
+
+    @Query(value = "SELECT * FROM PROJECT p WHERE MONTH(p.CLOSE_PROJECT_DATE) = :month", nativeQuery = true)
+    List<Project> findProjectsCloseToFinish(@Param("month") Integer mon);
 
 }

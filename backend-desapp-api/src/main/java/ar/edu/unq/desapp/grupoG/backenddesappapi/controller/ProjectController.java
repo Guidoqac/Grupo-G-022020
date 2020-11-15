@@ -44,4 +44,10 @@ public class ProjectController {
         return projectService.findProjectsFromTo(from, to);
     }
 
+    @GetMapping(path = "/projectCloseToFinish")
+    @ResponseBody
+    public List<Project> findProjectsCloseToFinish(@RequestParam Integer month){
+        return projectService.findProjectsCloseToFinish(month);
+    }
+
 }
