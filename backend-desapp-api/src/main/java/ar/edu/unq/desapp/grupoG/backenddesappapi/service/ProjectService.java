@@ -4,9 +4,12 @@ import ar.edu.unq.desapp.grupoG.backenddesappapi.exceptions.MissingDataException
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.ProjectRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,8 +34,8 @@ public class ProjectService {
     }
     
     @Transactional
-    public List<Project> findAll(){
-        return this.projectRepository.findAll();
+    public Page<Project> findAll(Pageable page){
+        return this.projectRepository.findAll(page);
     }
 
     @Transactional
@@ -41,13 +44,12 @@ public class ProjectService {
     }
 
     @Transactional
-    public List<Project> findProjectsFromTo(Integer from, Integer to){
-        return this.projectRepository.findProjectsFromTo(from, to);
+    public Page<Project> findProjectsCloseToFinish(Pageable page){
+        return this.projectRepository.findProjectsCloseToFinish(page, LocalDate.now().getMonth().getValue());
     }
 
     @Transactional
-    public List<Project> findProjectsCloseToFinish(Integer month){
-        return this.projectRepository.findProjectsCloseToFinish(month);
+    public Page<Project> findOpenProjects(Pageable page){
+        return this.projectRepository.findOpenProyects(page);
     }
-
 }

@@ -82,6 +82,7 @@ public class InitServiceInMemory {
         Project proj13 = new Project(loc13, 10.0, "Proj13", LocalDate.now(), LocalDate.now());
 
 
+        proj7.closeProject();
         //project.addDonation(don1);
         //project.addDonation(don2);
         //project.addDonation(don3);
