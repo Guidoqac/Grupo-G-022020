@@ -6,6 +6,8 @@ import ar.edu.unq.desapp.grupoG.backenddesappapi.service.ProjectService;
 
 import java.util.stream.Stream;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Pageable;
@@ -19,6 +21,10 @@ import org.springframework.web.server.ResponseStatusException;
 @CrossOrigin
 public class ProjectController {
 
+    //Logger logger = LoggerFactory.getLogger(ProjectController.class);
+
+    private static final Logger logger = LogManager.getLogger(ProjectController.class);
+
     @Autowired
     private ProjectService projectService;
 
@@ -31,6 +37,14 @@ public class ProjectController {
     @GetMapping(path = "/allOpenProjects")
     @ResponseBody
     public Stream<Project> getOpenProjects(@PageableDefault(size = 5, page = 0) Pageable page) {
+        //logger.trace("A TRACE Message");
+        //logger.debug("A DEBUG Message");
+        //logger.info("An INFO Message");
+        //logger.warn("A WARN Message");
+        //logger.error("An ERROR Message");
+
+        logger.debug("Hello from Log4j 2 - num : {}", () -> 2);
+
         return projectService.findOpenProjects(page).get();
     }
 
