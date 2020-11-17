@@ -24,7 +24,6 @@ public class EmailService implements EmailPort{
         return sendEmailTool(emailBody.getContent(),emailBody.getEmail(), emailBody.getSubject());
     }
 
-
     private boolean sendEmailTool(String textMessage, String email,String subject) {
         boolean send = false;
         MimeMessage message = sender.createMimeMessage();

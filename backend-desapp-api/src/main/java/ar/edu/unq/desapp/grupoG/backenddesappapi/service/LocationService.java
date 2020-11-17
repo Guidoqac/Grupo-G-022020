@@ -12,21 +12,26 @@ import java.util.List;
 public class LocationService {
 
     @Autowired
-    private LocationRepository repository;
+    private LocationRepository locationRepository;
     
     @Transactional
     public Location save(Location model) {
-        return this.repository.save(model);
+        return this.locationRepository.save(model);
     }
 
     @Transactional
     public Location findById(Integer id){
-        return this.repository.findById(id).get();
+        return this.locationRepository.findById(id).get();
     }
 
     @Transactional
     public void deleteById(Integer id){
-        this.repository.deleteById(id);
+        this.locationRepository.deleteById(id);
+    }
+
+    @Transactional
+    public List<Location> findTopTenProjects() {
+        return locationRepository.findTopTenLocations();
     }
 
 }

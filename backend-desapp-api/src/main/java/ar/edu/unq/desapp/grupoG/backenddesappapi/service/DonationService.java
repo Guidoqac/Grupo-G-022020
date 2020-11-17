@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Donation;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.DonationRepository;
 
+import java.util.List;
+
 @Service
 public class DonationService {
 	
@@ -26,6 +28,11 @@ public class DonationService {
     @Transactional
     public void deleteById(Integer id){
         this.repository.deleteById(id);
+    }
+
+    @Transactional
+    public List<Donation> getTopTenDonations(){
+        return this.repository.findTopTenDonations();
     }
 
 }

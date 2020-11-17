@@ -2,15 +2,16 @@ package ar.edu.unq.desapp.grupoG.backenddesappapi.controller;
 
 import javax.annotation.PostConstruct;
 
+import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Donation;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Location;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.service.DonationService;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.service.LocationService;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.service.ProjectService;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
@@ -28,6 +29,9 @@ public class InitServiceInMemory {
     @Autowired
     private LocationService locationService;
 
+    @Autowired
+    private DonationService donationService;
+
     @PostConstruct
     public void initialize() throws Exception {
         fireInitialData();
@@ -39,9 +43,34 @@ public class InitServiceInMemory {
         userService.save(user1);
         userService.save(user2);
 
-        //Donation don1 = new Donation(0, 1, 500.0 , "Buenisimo1");
-        //Donation don2 = new Donation(0, 1, 1500.0 , "Buenisimo2",  LocalDate.now());
-        //Donation don3 = new Donation(0, 1, 2500.0 , "Buenisimo3",  LocalDate.now());
+        Donation don1 = new Donation(0, 1, 500.0 , "Buenisimo1");
+        Donation don2 = new Donation(1, 1, 1500.0, "Buenisimo2");
+        Donation don3 = new Donation(1, 1, 3500.0, "Buenisimo3");
+        Donation don4 = new Donation(1, 8, 4500.0, "Buenisimo4");
+        Donation don5 = new Donation(2, 8, 5500.0, "Buenisimo5");
+        Donation don6 = new Donation(2, 9, 6500.0, "Buenisimo6");
+        Donation don7 = new Donation(3, 3, 7500.0, "Buenisimo7");
+        Donation don8 = new Donation(3, 3, 8500.0, "Buenisimo8");
+        Donation don9 = new Donation(3, 1, 9500.0, "Buenisimo9");
+        Donation don10 = new Donation(4, 1, 10500.0, "Buenisimo10");
+        Donation don11 = new Donation(4, 5, 11500.0, "Buenisimo11");
+        Donation don12 = new Donation(4, 2, 12500.0, "Buenisimo12");
+        Donation don13 = new Donation(4, 3, 13500.0, "Buenisimo13");
+        Donation don14 = new Donation(4, 5, 14500.0, "Buenisimo14");
+        Donation don15 = new Donation(4, 10, 15500.0, "Buenisimo15");
+        Donation don16 = new Donation(5, 5, 16500.0, "Buenisimo16");
+        Donation don17 = new Donation(5, 13, 17500.0, "Buenisimo17");
+        Donation don18 = new Donation(6, 8, 18500.0, "Buenisimo18");
+        Donation don19 = new Donation(7, 8, 19500.0, "Buenisimo19");
+        Donation don20 = new Donation(7, 10, 20500.0, "Buenisimo20");
+        Donation don21 = new Donation(7, 1, 21500.0, "Buenisimo21");
+        Donation don22 = new Donation(7, 11, 22500.0, "Buenisimo22");
+        Donation don23 = new Donation(7, 10, 23500.0, "Buenisimo23");
+        Donation don24 = new Donation(8, 6, 24500.0, "Buenisimo24");
+        Donation don25 = new Donation(8, 2, 25500.0, "Buenisimo25");
+        Donation don26 = new Donation(8, 2, 26500.0, "Buenisimo26");
+        Donation don27 = new Donation(8, 10, 27500.0, "Buenisimo27");
+        Donation don28 = new Donation(8, 9, 28500.0, "Buenisimo28");
 
         Location locationToninas = new Location("Las Toninas", "Buenos Aires", 5000, "Un status");
         LocalDate startProjectDateT = LocalDate.of(1996, 04, 25);
@@ -82,16 +111,7 @@ public class InitServiceInMemory {
         Project proj12 = new Project(loc12, 10.0, "Proj12", LocalDate.now(), LocalDate.now());
         Project proj13 = new Project(loc13, 10.0, "Proj13", LocalDate.now(), LocalDate.now());
 
-
         proj7.closeProject();
-        //project.addDonation(don1);
-        //project.addDonation(don2);
-        //project.addDonation(don3);
-
-        //project1.setLastDonationDate(LocalDate.now());
-
-        //projectService.save(project1);
-        //projectService.save(project2);
 
         projectService.save(proj1);
         projectService.save(proj2);
@@ -106,6 +126,35 @@ public class InitServiceInMemory {
         projectService.save(proj11);
         projectService.save(proj12);
         projectService.save(proj13);
+
+        donationService.save(don1);
+        donationService.save(don2);
+        donationService.save(don3);
+        donationService.save(don4);
+        donationService.save(don5);
+        donationService.save(don6);
+        donationService.save(don7);
+        donationService.save(don8);
+        donationService.save(don9);
+        donationService.save(don10);
+        donationService.save(don11);
+        donationService.save(don12);
+        donationService.save(don13);
+        donationService.save(don14);
+        donationService.save(don15);
+        donationService.save(don16);
+        donationService.save(don17);
+        donationService.save(don18);
+        donationService.save(don19);
+        donationService.save(don20);
+        donationService.save(don21);
+        donationService.save(don22);
+        donationService.save(don23);
+        donationService.save(don24);
+        donationService.save(don25);
+        donationService.save(don26);
+        donationService.save(don27);
+        donationService.save(don28);
     }
 
 }
