@@ -33,5 +33,10 @@ public class LocationService {
     public List<Location> findTopTenProjects() {
         return locationRepository.findTopTenLocations();
     }
+    
+    @Transactional
+    public List<Location> findAll() {
+        return locationRepository.findAll();
+    }
 
 }

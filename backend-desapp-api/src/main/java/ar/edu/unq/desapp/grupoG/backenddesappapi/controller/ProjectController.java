@@ -30,6 +30,12 @@ public class ProjectController {
     public Project getProjectById(@PathVariable Integer id) {
         return projectService.findById(id);
     }
+    
+    @AuditLogger
+    @PostMapping(path = "/close")
+    public void closeProject(@PathVariable Integer id) {
+         projectService.closeProject(id);
+    }
 
     @AuditLogger
     @GetMapping(path = "/allOpenProjects")
@@ -45,13 +51,17 @@ public class ProjectController {
     }
 
     @AuditLogger
-    @PostMapping(path = "/project")
-    public void postUser(@RequestBody Project project) throws Exception {
-        try {
+    @PostMapping(path = "/create")
+    public void createProject(@RequestBody Project project) throws Exception {
+//        try {
+    	System.out.println("HOLAAAAA");
+        	System.out.println(project);
+
+
             projectService.save(project);
-        } catch (MissingDataException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Faltan datos del proyecto", e);
-        }
+//        } catch (MissingDataException e) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Faltan datos del proyecto", e);
+//        }
     }
 
     @DeleteMapping("/project/{id}")

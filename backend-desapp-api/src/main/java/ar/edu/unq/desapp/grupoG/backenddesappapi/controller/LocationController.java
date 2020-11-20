@@ -20,5 +20,11 @@ public class LocationController {
     public List<Location> getTopTenLocations(@PathVariable Integer id) {
         return locationService.findTopTenProjects();
     }
+    
+    @GetMapping(path = "/allLocations")
+    @ResponseBody
+    public List<Location> getAllLocations() {
+        return locationService.findAll();
+    }
 
 }

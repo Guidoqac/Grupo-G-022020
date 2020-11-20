@@ -23,7 +23,7 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProject;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     private Location location;
 
     @Column

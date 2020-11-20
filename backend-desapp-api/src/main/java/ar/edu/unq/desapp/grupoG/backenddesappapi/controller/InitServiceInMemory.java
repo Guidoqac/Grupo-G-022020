@@ -96,6 +96,21 @@ public class InitServiceInMemory {
         Location loc11 = new Location("Loc11", "prov11", 50, "Status");
         Location loc12 = new Location("Loc12", "prov12", 50, "Status");
         Location loc13 = new Location("Loc13", "prov13", 50, "Status");
+        
+        locationService.save(loc1);
+        locationService.save(loc2);
+        locationService.save(loc3);
+        locationService.save(loc4);
+        locationService.save(loc5);
+        locationService.save(loc6);
+        locationService.save(loc7);
+        locationService.save(loc8);
+        locationService.save(loc9);
+        locationService.save(loc10);
+        locationService.save(loc11);
+        locationService.save(loc12);
+        locationService.save(loc13);
+
 
         Project proj1 = new Project(loc1, 10.0, "Proj1", LocalDate.now(), LocalDate.now());
         Project proj2 = new Project(loc2, 10.0, "Proj2", LocalDate.now(), LocalDate.now());
