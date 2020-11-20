@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoG.backenddesappapi;
+package ar.edu.unq.desapp.grupoG.backenddesappapi.controller;
 
 import javax.annotation.PostConstruct;
 
@@ -9,12 +9,13 @@ import ar.edu.unq.desapp.grupoG.backenddesappapi.service.LocationService;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.service.ProjectService;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
-@Service
+@Controller
 @Transactional
 public class InitServiceInMemory {
 
@@ -106,4 +107,5 @@ public class InitServiceInMemory {
         projectService.save(proj12);
         projectService.save(proj13);
     }
+
 }
