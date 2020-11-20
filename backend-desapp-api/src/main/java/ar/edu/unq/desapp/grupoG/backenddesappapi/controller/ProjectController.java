@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.controller;
 
+import ar.edu.unq.desapp.grupoG.backenddesappapi.aspects.AuditLogger;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.exceptions.MissingDataException;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.service.ProjectService;
@@ -8,6 +9,7 @@ import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("projects")
+@EnableAutoConfiguration
 @CrossOrigin
 public class ProjectController {
 
@@ -28,6 +31,7 @@ public class ProjectController {
         return projectService.findById(id);
     }
 
+    @AuditLogger
     @GetMapping(path = "/allOpenProjects")
     @ResponseBody
     public Stream<Project> getOpenProjects(@PageableDefault(size = 5, page = 0) Pageable page) {
@@ -40,6 +44,7 @@ public class ProjectController {
         return projectService.findProjectsCloseToFinish(page).get();
     }
 
+    @AuditLogger
     @PostMapping(path = "/project")
     public void postUser(@RequestBody Project project) throws Exception {
         try {
