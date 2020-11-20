@@ -48,4 +48,11 @@ public class ProjectService {
     public Page<Project> findOpenProjects(Pageable page){
         return this.projectRepository.findOpenProyects(page);
     }
+
+
+    @Transactional
+    public void closeProject(int id){
+        Project project = this.findById(id);
+        project.closeProject();
+    }
 }
