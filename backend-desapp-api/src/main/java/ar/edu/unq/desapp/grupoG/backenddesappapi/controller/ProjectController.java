@@ -1,15 +1,15 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.controller;
 
+import ar.edu.unq.desapp.grupoG.backenddesappapi.aspects.AuditLogger;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.exceptions.MissingDataException;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.service.ProjectService;
 
 import java.util.stream.Stream;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -18,12 +18,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("projects")
+@EnableAutoConfiguration
 @CrossOrigin
 public class ProjectController {
-
-    //Logger logger = LoggerFactory.getLogger(ProjectController.class);
-
-    private static final Logger logger = LogManager.getLogger(ProjectController.class);
 
     @Autowired
     private ProjectService projectService;
@@ -34,17 +31,10 @@ public class ProjectController {
         return projectService.findById(id);
     }
 
+    @AuditLogger
     @GetMapping(path = "/allOpenProjects")
     @ResponseBody
     public Stream<Project> getOpenProjects(@PageableDefault(size = 5, page = 0) Pageable page) {
-        //logger.trace("A TRACE Message");
-        //logger.debug("A DEBUG Message");
-        //logger.info("An INFO Message");
-        //logger.warn("A WARN Message");
-        //logger.error("An ERROR Message");
-
-        logger.debug("Hello from Log4j 2 - num : {}", () -> 2);
-
         return projectService.findOpenProjects(page).get();
     }
 
@@ -54,6 +44,7 @@ public class ProjectController {
         return projectService.findProjectsCloseToFinish(page).get();
     }
 
+    @AuditLogger
     @PostMapping(path = "/project")
     public void postUser(@RequestBody Project project) throws Exception {
         try {

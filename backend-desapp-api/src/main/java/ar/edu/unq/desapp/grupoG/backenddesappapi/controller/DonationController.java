@@ -36,8 +36,6 @@ public class DonationController {
         User userFound = userService.findById(donation.getIdUser());
         Project projectFound = projectService.findById(donation.getIdProject());
 
-        
-
         projectFound.addDonation(donation);
         projectFound.setLastDonationDate(LocalDate.now());
         

@@ -221,4 +221,23 @@ public class Project {
     public double getPercentCollected() {
         return percentCollected;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + idProject +
+                ", location='" + location + '\'' +
+                ", factor='" + factor + '\'' +
+                ", minPercentProjectClosure='" + minPercentProjectClosure + '\'' +
+                ", projectFantasyName=" + projectFantasyName + '\'' +
+                ", closeProjectDate=" + closeProjectDate + '\'' +
+                ", startProjectDate=" + startProjectDate + '\'' +
+                ", donations=" + donations + '\'' +
+                ", lastDonationDate=" + lastDonationDate + '\'' +
+                ", isClosed=" + isClosed + '\'' +
+                ", participants=" + participants + '\'' +
+                ", budgetCollected=" + budgetCollected + '\'' +
+                ", percentCollected=" + percentCollected + '\'' +
+                '}';
+    }
 }

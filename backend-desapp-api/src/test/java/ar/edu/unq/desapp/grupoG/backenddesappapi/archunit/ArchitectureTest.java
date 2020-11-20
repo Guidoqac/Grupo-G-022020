@@ -9,7 +9,7 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 public class ArchitectureTest {
 
     @Test
-    public void serviceOnlyAccessedByService() {
+    public void serviceOnlyAccessedByController() {
         JavaClasses importedClasses = new ClassFileImporter().importPackages("ar.edu.unq.desapp.grupoG.backenddesappapi");
 
         ArchRule rule = classes()

@@ -19,7 +19,7 @@ public class EmailSender {
      * 86400000 milisegundos = 1 dia
      *     5000 milisegundos = 5 segundos
      */
-    @Scheduled(fixedRate = 5000)
+    //@Scheduled(fixedRate = 5000)
     public void sendEmail() {
         EmailBody emailBody = new EmailBody();
         emailBody.setEmail("gonveron96@gmail.com");
