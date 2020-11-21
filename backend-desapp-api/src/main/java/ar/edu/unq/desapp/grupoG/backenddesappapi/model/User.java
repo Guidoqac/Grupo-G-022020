@@ -39,8 +39,11 @@ public class User {
 
     @Column
     private int points;
+    
+    @Column
+    private boolean isAdmin;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SELECT)
     private List<Reward> rewards;
 
@@ -56,6 +59,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.rewards = new ArrayList<Reward>();
+        this.isAdmin = false;
     }
 
     public User(String name, String surname, String nick, String password, String email){
@@ -65,9 +69,12 @@ public class User {
         this.password = password;
         this.email = email;
         this.rewards = new ArrayList<Reward>();
+        this.isAdmin = false;
     }
 
-    public int getIdUser(){ return this.idUser; }
+
+
+	public int getIdUser(){ return this.idUser; }
 
     public String getName(){ return this.name; }
 
@@ -105,5 +112,13 @@ public class User {
     public List<Reward> getRewards() {
         return rewards;
     }
+    
+    public boolean isAdmin() {
+		return isAdmin;
+	}
+    
+    public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 
 }

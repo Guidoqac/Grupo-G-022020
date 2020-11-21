@@ -40,6 +40,10 @@ public class InitServiceInMemory {
     private void fireInitialData() throws Exception {
         User user1 = new User("Gonza", "veron", "Spore", "asdasdas", "gonveron96@gmail.com");
         User user2 = new User("Guido", "Montorfano", "Quilmes", "12345", "guidomontorfano78@gmail.com");
+        
+        user1.setAdmin(true);
+        user2.setAdmin(true);
+        
         userService.save(user1);
         userService.save(user2);
 
