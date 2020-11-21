@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoG.backenddesappapi.email;
+package ar.edu.unq.desapp.grupoG.backenddesappapi.model;
 
 public class EmailBody {
     private String email;

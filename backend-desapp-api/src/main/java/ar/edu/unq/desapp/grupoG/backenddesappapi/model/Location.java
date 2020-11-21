@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
+import java.time.LocalDate;
 
 @Entity
 public class Location {
@@ -24,6 +25,9 @@ public class Location {
 
 	@Column
     private String connectivityStatus;
+
+	@Column
+	private LocalDate lastDonationDate;
 
 	public Location(){
 
@@ -82,6 +86,14 @@ public class Location {
 
 	public void setStatus(String status) {
 		this.connectivityStatus = status;
+	}
+
+	public LocalDate getLastDonationDate() {
+		return lastDonationDate;
+	}
+
+	public void setLastDonationDate(LocalDate lastDonationDate) {
+		this.lastDonationDate = lastDonationDate;
 	}
 
 	@Override

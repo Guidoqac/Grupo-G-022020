@@ -1,8 +1,9 @@
-package ar.edu.unq.desapp.grupoG.backenddesappapi.email;
+package ar.edu.unq.desapp.grupoG.backenddesappapi.service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import ar.edu.unq.desapp.grupoG.backenddesappapi.model.EmailBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +12,13 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EmailService implements EmailPort{
+public class EmailService{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
 
     @Autowired
     private JavaMailSender sender;
 
-    @Override
     public boolean sendEmail(EmailBody emailBody)  {
         LOGGER.info("EmailBody: {}", emailBody.toString());
         return sendEmailTool(emailBody.getContent(),emailBody.getEmail(), emailBody.getSubject());
@@ -39,5 +39,13 @@ public class EmailService implements EmailPort{
             LOGGER.error("Hubo un error al enviar el mail: {}", e);
         }
         return send;
+    }
+
+    public EmailBody createEmailBody (String email, String subject, String content){
+        EmailBody emailBody = new EmailBody();
+        emailBody.setEmail(email);
+        emailBody.setSubject(subject);
+        emailBody.setContent(content);
+        return emailBody;
     }
 }
