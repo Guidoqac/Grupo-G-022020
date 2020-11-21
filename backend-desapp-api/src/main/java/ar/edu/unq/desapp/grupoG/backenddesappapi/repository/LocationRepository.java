@@ -12,6 +12,6 @@ public interface LocationRepository extends CrudRepository<Location, Integer> {
 
     List<Location> findAll();
 
-    @Query(value = "SELECT * FROM LOCATION l INNER JOIN PROJECT p ON l.ID = p.LOCATION_ID WHERE p.LAST_DONATION_DATE IS NOT NULL ORDER BY p.LOCATION_ID DESC LIMIT 0, 10", nativeQuery = true)
+    @Query(value = "SELECT * FROM LOCATION l WHERE l.LAST_DONATION_DATE IS NOT NULL ORDER BY l.LAST_DONATION_DATE ASC LIMIT 0, 10", nativeQuery = true)
     List<Location> findTopTenLocations();
 }

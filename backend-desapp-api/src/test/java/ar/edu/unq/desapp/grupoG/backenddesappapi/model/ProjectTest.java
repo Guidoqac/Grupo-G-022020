@@ -171,17 +171,6 @@ class ProjectTest {
         assertTrue(projectToninas.alreadyDonate(1));
     }
 
-    @Test
-    void getLastDonationDateTest(){
-        assertEquals(startProjectDate, projectToninas.getLastDonationDate());
-    }
-
-    @Test
-    void setLastDonationDateTest(){
-        LocalDate newDate = LocalDate.of(1996, 4, 25);
-        projectToninas.setLastDonationDate(newDate);
-        assertEquals(newDate, projectToninas.getLastDonationDate());
-    }
 
     @Test
     void addParticipantTest(){
@@ -191,15 +180,12 @@ class ProjectTest {
 
         when(donMock1.getIdUser()).thenReturn(1);
         when(donMock1.getAmount()).thenReturn(500.0);
-        when(donMock1.getDonationDate()).thenReturn(LocalDate.of(2020, 01, 23));
 
         when(donMock2.getIdUser()).thenReturn(2);
         when(donMock2.getAmount()).thenReturn(5000.0);
-        when(donMock2.getDonationDate()).thenReturn(LocalDate.of(2020, 10, 24));
 
         when(donMock3.getIdUser()).thenReturn(1);
         when(donMock3.getAmount()).thenReturn(7000.0);
-        when(donMock3.getDonationDate()).thenReturn(LocalDate.of(2020, 10, 25));
 
         projectToninas.addDonation(donMock1);
         projectToninas.addDonation(donMock2);

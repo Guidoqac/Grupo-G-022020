@@ -46,9 +46,6 @@ public class Project {
     private List<Donation> donations;
 
     @Column
-    private LocalDate lastDonationDate;
-
-    @Column
     private boolean isClosed;
 
     @Column
@@ -86,7 +83,6 @@ public class Project {
         this.projectFantasyName = projectFantasyName;
         this.closeProjectDate = closeProjectDate;
         this.startProjectDate = startProjectDate;
-        this.lastDonationDate = startProjectDate;
         this.donations = new ArrayList<Donation>();
         this.isClosed = false;
         this.participants = 0;
@@ -179,14 +175,6 @@ public class Project {
         this.percentCollected = this.budgetCollected * 100 / this.calculateBudget();
     }
 
-    public LocalDate getLastDonationDate(){
-        return this.lastDonationDate;
-    }
-
-    public void setLastDonationDate(LocalDate ld){
-        this.lastDonationDate = ld;
-    }
-
     public boolean alreadyDonate(int idUser) {
     	boolean donate = false;
     	Iterator<Donation> iteratorDonations = donations.iterator();
@@ -233,7 +221,6 @@ public class Project {
                 ", closeProjectDate=" + closeProjectDate + '\'' +
                 ", startProjectDate=" + startProjectDate + '\'' +
                 ", donations=" + donations + '\'' +
-                ", lastDonationDate=" + lastDonationDate + '\'' +
                 ", isClosed=" + isClosed + '\'' +
                 ", participants=" + participants + '\'' +
                 ", budgetCollected=" + budgetCollected + '\'' +

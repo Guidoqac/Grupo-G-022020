@@ -38,12 +38,12 @@ public class InitServiceInMemory {
     }
 
     private void fireInitialData() throws Exception {
-        User user1 = new User("Gonza", "veron", "Spore", "asdasdas", "gonza@gmail.com");
-        User user2 = new User("Guido", "Montorfano", "Quilmes", "12345", "guido@gmail.com");
+        User user1 = new User("Gonza", "veron", "Spore", "asdasdas", "gonveron96@gmail.com");
+        User user2 = new User("Guido", "Montorfano", "Quilmes", "12345", "guidomontorfano78@gmail.com");
         userService.save(user1);
         userService.save(user2);
 
-        Donation don1 = new Donation(0, 1, 500.0 , "Buenisimo1");
+        Donation don1 = new Donation(1, 1, 500.0 , "Buenisimo1");
         Donation don2 = new Donation(1, 1, 1500.0, "Buenisimo2");
         Donation don3 = new Donation(1, 1, 3500.0, "Buenisimo3");
         Donation don4 = new Donation(1, 8, 4500.0, "Buenisimo4");
@@ -96,7 +96,12 @@ public class InitServiceInMemory {
         Location loc11 = new Location("Loc11", "prov11", 50, "Status");
         Location loc12 = new Location("Loc12", "prov12", 50, "Status");
         Location loc13 = new Location("Loc13", "prov13", 50, "Status");
-        
+
+        loc5.setLastDonationDate(LocalDate.of(1996, 4, 13));
+        loc12.setLastDonationDate(LocalDate.of(2005, 8, 20));
+        loc8.setLastDonationDate(LocalDate.of(2012, 12, 12));
+
+
         locationService.save(loc1);
         locationService.save(loc2);
         locationService.save(loc3);
@@ -170,6 +175,10 @@ public class InitServiceInMemory {
         donationService.save(don26);
         donationService.save(don27);
         donationService.save(don28);
+
+        donationService.donate(don1);
+
+
     }
 
 }
