@@ -32,6 +32,9 @@ public class DonationsByUser {
     @Column
     private int points;
     
+    public DonationsByUser() {
+    }
+    
     public DonationsByUser(int idDonateByUser, int idUser, String nameProject, double amount, LocalDate donatinDate, int points) {
     	this.idDonateByUser =idDonateByUser;
     	this.idUser = idUser;

@@ -123,19 +123,19 @@ public class InitServiceInMemory {
 
         Project proj1 = new Project(loc1, 10.0, "Proj1", LocalDate.now(), LocalDate.now());
         Project proj2 = new Project(loc2, 10.0, "Proj2", LocalDate.now(), LocalDate.now());
-        Project proj3 = new Project(loc3, 10.0, "Proj3", LocalDate.now(), LocalDate.now());
+        Project proj3 = new Project(loc3, 10.0, "Proj3", LocalDate.of(2020, 7, 22), LocalDate.now());
         Project proj4 = new Project(loc4, 10.0, "Proj4", LocalDate.now(), LocalDate.now());
         Project proj5 = new Project(loc5, 10.0, "Proj5", LocalDate.now(), LocalDate.now());
         Project proj6 = new Project(loc6, 10.0, "Proj6", LocalDate.now(), LocalDate.now());
         Project proj7 = new Project(loc7, 10.0, "Proj7", LocalDate.of(2020, 7, 22), LocalDate.now());
-        Project proj8 = new Project(loc8, 10.0, "Proj8", LocalDate.now(), LocalDate.now());
-        Project proj9 = new Project(loc9, 10.0, "Proj9", LocalDate.now(), LocalDate.now());
+        Project proj8 = new Project(loc8, 10.0, "Proj8", LocalDate.of(2020, 7, 22), LocalDate.now());
+        Project proj9 = new Project(loc9, 10.0, "Proj9", LocalDate.of(2020, 7, 22), LocalDate.now());
         Project proj10 = new Project(loc10, 10.0, "Proj10", LocalDate.now(), LocalDate.now());
         Project proj11 = new Project(loc11, 10.0, "Proj11", LocalDate.now(), LocalDate.now());
         Project proj12 = new Project(loc12, 10.0, "Proj12", LocalDate.now(), LocalDate.now());
-        Project proj13 = new Project(loc13, 10.0, "Proj13", LocalDate.now(), LocalDate.now());
+        Project proj13 = new Project(loc13, 10.0, "Proj13", LocalDate.of(2020, 7, 22), LocalDate.now());
 
-        proj7.closeProject();
+//        proj7.closeProject();
 
         projectService.save(proj1);
         projectService.save(proj2);

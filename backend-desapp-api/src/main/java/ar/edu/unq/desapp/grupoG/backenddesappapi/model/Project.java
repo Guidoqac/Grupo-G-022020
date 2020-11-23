@@ -41,7 +41,7 @@ public class Project {
     @Column
     private LocalDate startProjectDate;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SELECT)
     private List<Donation> donations;
 
@@ -58,7 +58,7 @@ public class Project {
     private double percentCollected;
 
     public Project(){
-
+    	this.startProjectDate = LocalDate.now();
     }
 
     public Project(Location location, Double minPercentProjectClosure, String projectFantasyName, LocalDate closeProjectDate, LocalDate startProjectDate) {
@@ -67,7 +67,7 @@ public class Project {
         this.minPercentProjectClosure = minPercentProjectClosure;
         this.projectFantasyName = projectFantasyName;
         this.closeProjectDate = closeProjectDate;
-        this.startProjectDate = startProjectDate;
+        this.startProjectDate = LocalDate.now();
         this.donations = new ArrayList<Donation>();
         this.isClosed = false;
         this.participants = 0;
@@ -82,7 +82,7 @@ public class Project {
         this.minPercentProjectClosure = minPercentProjectClosure;
         this.projectFantasyName = projectFantasyName;
         this.closeProjectDate = closeProjectDate;
-        this.startProjectDate = startProjectDate;
+        this.startProjectDate = LocalDate.now();
         this.donations = new ArrayList<Donation>();
         this.isClosed = false;
         this.participants = 0;
@@ -98,7 +98,7 @@ public class Project {
         this.minPercentProjectClosure = minPercentProjectClosure;
         this.projectFantasyName = projectFantasyName;
         this.closeProjectDate = closeProjectDate;
-        this.startProjectDate = startProjectDate;
+        this.startProjectDate = LocalDate.now();
         this.donations = new ArrayList<Donation>();
         this.isClosed = false;
     }
@@ -227,4 +227,10 @@ public class Project {
                 ", percentCollected=" + percentCollected + '\'' +
                 '}';
     }
+    
+
+    public void setStartProjectDate(LocalDate startProjectDate) {
+		this.startProjectDate = startProjectDate;
+	}
+
 }

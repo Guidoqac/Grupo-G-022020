@@ -24,7 +24,7 @@ public class DonationsByUserController {
     @Autowired
     private DonationsByUserService donationsByUserService;
     
-	@GetMapping(path = "/donationByUser/{id}")
+	@GetMapping(path = "/donations/{id}")
 	@ResponseBody
 	public List<DonationsByUser> getDonationsByUserServiceByIdUser(@PathVariable Integer id) {
 		System.out.println("holaaaa");
