@@ -53,28 +53,28 @@ public class InitServiceInMemory {
         Donation don4 = new Donation(1, 8, 4500.0, "Buenisimo4");
         Donation don5 = new Donation(2, 8, 5500.0, "Buenisimo5");
         Donation don6 = new Donation(2, 9, 6500.0, "Buenisimo6");
-        Donation don7 = new Donation(3, 3, 7500.0, "Buenisimo7");
-        Donation don8 = new Donation(3, 3, 8500.0, "Buenisimo8");
-        Donation don9 = new Donation(3, 1, 9500.0, "Buenisimo9");
-        Donation don10 = new Donation(4, 1, 10500.0, "Buenisimo10");
-        Donation don11 = new Donation(4, 5, 11500.0, "Buenisimo11");
-        Donation don12 = new Donation(4, 2, 12500.0, "Buenisimo12");
-        Donation don13 = new Donation(4, 3, 13500.0, "Buenisimo13");
-        Donation don14 = new Donation(4, 5, 14500.0, "Buenisimo14");
-        Donation don15 = new Donation(4, 10, 15500.0, "Buenisimo15");
-        Donation don16 = new Donation(5, 5, 16500.0, "Buenisimo16");
-        Donation don17 = new Donation(5, 13, 17500.0, "Buenisimo17");
-        Donation don18 = new Donation(6, 8, 18500.0, "Buenisimo18");
-        Donation don19 = new Donation(7, 8, 19500.0, "Buenisimo19");
-        Donation don20 = new Donation(7, 10, 20500.0, "Buenisimo20");
-        Donation don21 = new Donation(7, 1, 21500.0, "Buenisimo21");
-        Donation don22 = new Donation(7, 11, 22500.0, "Buenisimo22");
-        Donation don23 = new Donation(7, 10, 23500.0, "Buenisimo23");
-        Donation don24 = new Donation(8, 6, 24500.0, "Buenisimo24");
-        Donation don25 = new Donation(8, 2, 25500.0, "Buenisimo25");
-        Donation don26 = new Donation(8, 2, 26500.0, "Buenisimo26");
-        Donation don27 = new Donation(8, 10, 27500.0, "Buenisimo27");
-        Donation don28 = new Donation(8, 9, 28500.0, "Buenisimo28");
+        Donation don7 = new Donation(2, 3, 7500.0, "Buenisimo7");
+        Donation don8 = new Donation(2, 3, 8500.0, "Buenisimo8");
+        Donation don9 = new Donation(2, 1, 9500.0, "Buenisimo9");
+        Donation don10 = new Donation(1, 1, 10500.0, "Buenisimo10");
+        Donation don11 = new Donation(1, 5, 11500.0, "Buenisimo11");
+        Donation don12 = new Donation(2, 2, 12500.0, "Buenisimo12");
+        Donation don13 = new Donation(2, 3, 13500.0, "Buenisimo13");
+        Donation don14 = new Donation(1, 5, 14500.0, "Buenisimo14");
+        Donation don15 = new Donation(1, 10, 15500.0, "Buenisimo15");
+        Donation don16 = new Donation(2, 5, 16500.0, "Buenisimo16");
+        Donation don17 = new Donation(2, 13, 17500.0, "Buenisimo17");
+        Donation don18 = new Donation(1, 8, 18500.0, "Buenisimo18");
+        Donation don19 = new Donation(1, 8, 19500.0, "Buenisimo19");
+        Donation don20 = new Donation(2, 10, 20500.0, "Buenisimo20");
+        Donation don21 = new Donation(2, 1, 21500.0, "Buenisimo21");
+        Donation don22 = new Donation(1, 11, 22500.0, "Buenisimo22");
+        Donation don23 = new Donation(1, 10, 23500.0, "Buenisimo23");
+        Donation don24 = new Donation(2, 6, 24500.0, "Buenisimo24");
+        Donation don25 = new Donation(2, 2, 25500.0, "Buenisimo25");
+        Donation don26 = new Donation(1, 2, 26500.0, "Buenisimo26");
+        Donation don27 = new Donation(1, 10, 27500.0, "Buenisimo27");
+        Donation don28 = new Donation(2, 9, 28500.0, "Buenisimo28");
 
         Location locationToninas = new Location("Las Toninas", "Buenos Aires", 5000, "Un status");
         LocalDate startProjectDateT = LocalDate.of(1996, 04, 25);
@@ -123,19 +123,19 @@ public class InitServiceInMemory {
 
         Project proj1 = new Project(loc1, 10.0, "Proj1", LocalDate.now(), LocalDate.now());
         Project proj2 = new Project(loc2, 10.0, "Proj2", LocalDate.now(), LocalDate.now());
-        Project proj3 = new Project(loc3, 10.0, "Proj3", LocalDate.now(), LocalDate.now());
+        Project proj3 = new Project(loc3, 10.0, "Proj3", LocalDate.of(2020, 7, 22), LocalDate.now());
         Project proj4 = new Project(loc4, 10.0, "Proj4", LocalDate.now(), LocalDate.now());
         Project proj5 = new Project(loc5, 10.0, "Proj5", LocalDate.now(), LocalDate.now());
         Project proj6 = new Project(loc6, 10.0, "Proj6", LocalDate.now(), LocalDate.now());
         Project proj7 = new Project(loc7, 10.0, "Proj7", LocalDate.of(2020, 7, 22), LocalDate.now());
-        Project proj8 = new Project(loc8, 10.0, "Proj8", LocalDate.now(), LocalDate.now());
-        Project proj9 = new Project(loc9, 10.0, "Proj9", LocalDate.now(), LocalDate.now());
+        Project proj8 = new Project(loc8, 10.0, "Proj8", LocalDate.of(2020, 7, 22), LocalDate.now());
+        Project proj9 = new Project(loc9, 10.0, "Proj9", LocalDate.of(2020, 7, 22), LocalDate.now());
         Project proj10 = new Project(loc10, 10.0, "Proj10", LocalDate.now(), LocalDate.now());
         Project proj11 = new Project(loc11, 10.0, "Proj11", LocalDate.now(), LocalDate.now());
         Project proj12 = new Project(loc12, 10.0, "Proj12", LocalDate.now(), LocalDate.now());
-        Project proj13 = new Project(loc13, 10.0, "Proj13", LocalDate.now(), LocalDate.now());
+        Project proj13 = new Project(loc13, 10.0, "Proj13", LocalDate.of(2020, 7, 22), LocalDate.now());
 
-        proj7.closeProject();
+//        proj7.closeProject();
 
         projectService.save(proj1);
         projectService.save(proj2);
@@ -181,6 +181,33 @@ public class InitServiceInMemory {
         donationService.save(don28);
 
         donationService.donate(don1);
+        donationService.donate(don2);
+        donationService.donate(don3);
+        donationService.donate(don4);
+        donationService.donate(don5);
+        donationService.donate(don6);
+        donationService.donate(don7);
+        donationService.donate(don8);
+        donationService.donate(don9);
+        donationService.donate(don10);
+        donationService.donate(don11);
+        donationService.donate(don12);
+        donationService.donate(don13);
+        donationService.donate(don14);
+        donationService.donate(don15);
+        donationService.donate(don16);
+        donationService.donate(don17);
+        donationService.donate(don18);
+        donationService.donate(don19);
+        donationService.donate(don20);
+        donationService.donate(don21);
+        donationService.donate(don22);
+        donationService.donate(don23);
+        donationService.donate(don24);
+        donationService.donate(don25);
+        donationService.donate(don26);
+        donationService.donate(don27);
+        donationService.donate(don28);
 
 
     }

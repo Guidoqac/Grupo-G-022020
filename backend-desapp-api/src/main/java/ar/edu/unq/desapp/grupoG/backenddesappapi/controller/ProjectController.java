@@ -34,9 +34,6 @@ public class ProjectController {
     @AuditLogger
     @PostMapping(path = "/close")
     public void closeProject(@RequestBody Project project) {
-    	System.out.println("holiiiiiiiiiiiiiiiiii");
-
-    	System.out.println(project.getIdProject());
          projectService.closeProject(project.getIdProject());
     }
 

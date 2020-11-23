@@ -25,6 +25,4 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     @Query(value = "SELECT * FROM PROJECT p WHERE MONTH(p.CLOSE_PROJECT_DATE) = :month", nativeQuery = true)
     Page<Project> findProjectsCloseToFinish(Pageable page, @Param("month") Integer mon);
 
-    //@Query(value = "SELECT * FROM PROJECT p WHERE p.LAST_DONATION_DATE IS NOT NULL ORDER BY p.LAST_DONATION_DATE DESC LIMIT 0, 10", nativeQuery = true)
-    //List<Project> findTopTenProjects();
 }

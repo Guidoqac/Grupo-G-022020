@@ -13,7 +13,9 @@ import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Donation;
 public interface DonationRepository extends CrudRepository<Donation, Integer> {
 
     Optional<Donation> findById(Integer id);
-
+    
+    List<Donation> findByIdUser(Integer id);
+    
     List<Donation> findAll();
 
     @Query(value = "SELECT * FROM DONATIONS d ORDER BY d.AMOUNT DESC LIMIT 0, 10", nativeQuery = true)

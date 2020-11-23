@@ -40,5 +40,13 @@ public class DonationController {
     public void donate(@RequestBody Donation donation) throws Exception {
         donationService.donate(donation);
     }
+    
+    @GetMapping(path = "/donationByUser/{id}")
+    @ResponseBody
+    public List<Donation> donatiosByUser(@PathVariable Integer id) {
+        return donationService.findByIdUser(id);
+    }
+    
+    
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Donation;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.model.DonationsByUser;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.DonationRepository;
 
 import java.time.LocalDate;
@@ -27,6 +28,10 @@ public class DonationService {
 
     @Autowired
     private LocationService locationService;
+    
+    @Autowired
+    private DonationsByUserService donationsByUserService;
+    
 
     @Transactional
     public Donation save(Donation model) {
@@ -38,6 +43,12 @@ public class DonationService {
         return this.repository.findById(id).get();
     }
 
+    @Transactional
+    public List<Donation> findByIdUser(Integer id){
+        return this.repository.findByIdUser(id);
+    }
+
+    
     @Transactional
     public void deleteById(Integer id){
         this.repository.deleteById(id);
@@ -65,7 +76,10 @@ public class DonationService {
         userService.save(userFound);
         projectService.save(projectFound);
         locationService.save((locationByProjectFound));
-    }
+        
+        DonationsByUser donationByUser = new DonationsByUser(userFound.getIdUser(), projectFound.getProjectFantasyName(), donation.getAmount() ,LocalDate.now(), pointsUser );
+        donationsByUserService.save(donationByUser);
+        }
 
     private int calculatePoints(User userFound, Donation donation, Project projectFound){
         int pointsUser = userFound.getPoints();
