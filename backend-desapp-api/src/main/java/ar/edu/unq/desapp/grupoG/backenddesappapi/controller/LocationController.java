@@ -17,7 +17,7 @@ public class LocationController {
 
     @GetMapping(path = "/topTenLocations")
     @ResponseBody
-    public List<Location> getTopTenLocations(@PathVariable Integer id) {
+    public List<Location> getTopTenLocations() {
         return locationService.findTopTenLocations();
     }
     

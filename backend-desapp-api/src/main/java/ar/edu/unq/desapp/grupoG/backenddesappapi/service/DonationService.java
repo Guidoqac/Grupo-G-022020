@@ -1,5 +1,7 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.service;
 
+import ar.edu.unq.desapp.grupoG.backenddesappapi.exceptions.InvalidIdException;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.exceptions.MissingDataException;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Location;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.User;
@@ -11,6 +13,7 @@ import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Donation;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.DonationsByUser;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.DonationRepository;
 
+import javax.persistence.Column;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -31,7 +34,6 @@ public class DonationService {
     
     @Autowired
     private DonationsByUserService donationsByUserService;
-    
 
     @Transactional
     public Donation save(Donation model) {
@@ -39,18 +41,21 @@ public class DonationService {
     }
 
     @Transactional
-    public Donation findById(Integer id){
+    public Donation findById(Integer id) throws InvalidIdException {
+        this.validateId(id);
         return this.repository.findById(id).get();
     }
 
     @Transactional
-    public List<Donation> findByIdUser(Integer id){
+    public List<Donation> findByIdUser(Integer id) throws InvalidIdException {
+        this.validateId(id);
         return this.repository.findByIdUser(id);
     }
 
     
     @Transactional
-    public void deleteById(Integer id){
+    public void deleteById(Integer id) throws InvalidIdException {
+        this.validateId(id);
         this.repository.deleteById(id);
     }
 
@@ -60,8 +65,9 @@ public class DonationService {
     }
 
     @Transactional
-    public void donate(Donation donation) throws Exception {
-        System.out.println(userService.findById(donation.getIdUser()));
+    public void donate(Donation donation) throws MissingDataException, InvalidIdException {
+        this.validateDonation(donation);
+
         User userFound = userService.findById(donation.getIdUser());
         Project projectFound = projectService.findById(donation.getIdProject());
         Location locationByProjectFound = locationService.findById(projectFound.getLocation().getId());
@@ -79,7 +85,7 @@ public class DonationService {
         
         DonationsByUser donationByUser = new DonationsByUser(userFound.getIdUser(), projectFound.getProjectFantasyName(), donation.getAmount() ,LocalDate.now(), pointsUser );
         donationsByUserService.save(donationByUser);
-        }
+    }
 
     private int calculatePoints(User userFound, Donation donation, Project projectFound){
         int pointsUser = userFound.getPoints();
@@ -109,4 +115,20 @@ public class DonationService {
         return pointsUser;
     }
 
+    private void validateId(Integer id) throws InvalidIdException {
+        if(id <= 0){
+            throw new InvalidIdException("El id no existe");
+        }
+    }
+
+    private void validateDonation(Donation donation) throws MissingDataException {
+        if(donation.getIdUser() == null ||
+           donation.getIdProject() == null ||
+           donation.getAmount() < 0 ||
+           donation.getComment() == null){
+            throw new MissingDataException("Faltan datos de la donacion.");
+        }
+    }
+
 }
+

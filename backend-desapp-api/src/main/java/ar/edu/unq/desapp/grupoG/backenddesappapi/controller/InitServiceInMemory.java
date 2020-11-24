@@ -106,6 +106,8 @@ public class InitServiceInMemory {
         loc8.setLastDonationDate(LocalDate.of(2012, 12, 12));
 
 
+        System.out.println(loc1);
+
         locationService.save(loc1);
         locationService.save(loc2);
         locationService.save(loc3);

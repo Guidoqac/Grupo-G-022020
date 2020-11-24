@@ -1,18 +1,16 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.controller;
 
+import ar.edu.unq.desapp.grupoG.backenddesappapi.aspects.AuditLogger;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.exceptions.InvalidIdException;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.exceptions.MissingDataException;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Donation;
-import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Location;
-import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
-import ar.edu.unq.desapp.grupoG.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.service.DonationService;
-import ar.edu.unq.desapp.grupoG.backenddesappapi.service.LocationService;
-import ar.edu.unq.desapp.grupoG.backenddesappapi.service.ProjectService;
-import ar.edu.unq.desapp.grupoG.backenddesappapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
+import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("donations")
@@ -20,31 +18,35 @@ import java.util.List;
 public class DonationController {
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private ProjectService projectService;
-
-    @Autowired
-    private LocationService locationService;
-
-    @Autowired
     private DonationService donationService;
 
+    @AuditLogger
     @GetMapping(path = "/topTenDonations")
     public List<Donation> topTenDonations(){
         return donationService.getTopTenDonations();
     }
 
+    @AuditLogger
     @PostMapping(path = "/donate")
-    public void donate(@RequestBody Donation donation) throws Exception {
-        donationService.donate(donation);
+    public void donate(@RequestBody Donation donation) {
+        try{
+            donationService.donate(donation);
+        }catch (MissingDataException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+        }catch (NoSuchElementException | InvalidIdException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+        }
     }
-    
+
+    @AuditLogger
     @GetMapping(path = "/donationByUser/{id}")
     @ResponseBody
     public List<Donation> donatiosByUser(@PathVariable Integer id) {
-        return donationService.findByIdUser(id);
+        try{
+            return donationService.findByIdUser(id);
+        }catch (NoSuchElementException | InvalidIdException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+        }
     }
     
     
