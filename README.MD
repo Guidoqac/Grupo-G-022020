@@ -1,8 +1,6 @@
 [![Build Status](https://travis-ci.com/Guidoqac/Grupo-G-022020.svg?token=PdiQWMypQRz4ERLrtpou&branch=master)](https://travis-ci.com/Guidoqac/Grupo-G-022020)
 
-#Desarrollo de aplicaciones
-
-## GrupoG
+## GrupoG - Desarrollo de aplicaciones
 
 
 ### Integrantes:
