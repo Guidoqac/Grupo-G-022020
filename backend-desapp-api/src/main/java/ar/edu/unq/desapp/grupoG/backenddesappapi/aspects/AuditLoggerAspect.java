@@ -35,8 +35,13 @@ public class AuditLoggerAspect {
         logger.info("/////// " + "Executed in time: " + DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).format(zonedDateTime) + " ///////");
         logger.info("/////// " + joinPoint.getSignature() + " ///////");
         logger.info("/////// " + "Executed in " + executionTime + "ms" + " ///////");
-        logger.info("/////// " + "Params" + " ///////");
-        logger.info("/////// " + joinPoint.getArgs()[0].toString() + " ///////");
+        if(joinPoint.getArgs().length > 0){
+            logger.info("/////// " + "Params" + " ///////");
+            logger.info("/////// " + joinPoint.getArgs()[0].toString() + " ///////");
+        }else{
+            logger.info("/////// " + "No Params" + " ///////");
+        }
+
         logger.info("/-----------------------------------------------------/");
         return proceed;
     }

@@ -29,6 +29,7 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @AuditLogger
     @GetMapping(path = "/project/{id}")
     @ResponseBody
     public Project getProjectById(@PathVariable Integer id) throws InvalidIdException {
@@ -58,6 +59,7 @@ public class ProjectController {
         return projectService.findOpenProjects(page).get();
     }
 
+    @AuditLogger
     @GetMapping(path = "/projectCloseToFinish")
     @ResponseBody
     public Stream<Project> findProjectsCloseToFinish(@PageableDefault(size = 5, page = 0) Pageable page) {
@@ -74,6 +76,7 @@ public class ProjectController {
         }
     }
 
+    @AuditLogger
     @DeleteMapping("/project/{id}")
     public void deleteProject(@PathVariable Integer id) {
         try{

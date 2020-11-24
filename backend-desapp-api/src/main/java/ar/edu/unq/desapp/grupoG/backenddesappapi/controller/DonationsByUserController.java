@@ -3,6 +3,7 @@ package ar.edu.unq.desapp.grupoG.backenddesappapi.controller;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import ar.edu.unq.desapp.grupoG.backenddesappapi.aspects.AuditLogger;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.exceptions.InvalidIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -27,7 +28,8 @@ public class DonationsByUserController {
 
     @Autowired
     private DonationsByUserService donationsByUserService;
-    
+
+	@AuditLogger
 	@GetMapping(path = "/donations/{id}")
 	@ResponseBody
 	public List<DonationsByUser> getDonationsByUserServiceByIdUser(@PathVariable Integer id) {
