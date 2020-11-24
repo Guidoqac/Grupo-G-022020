@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/%22%3E">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <h1> Top 10 mejores donaciones: </h1>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th th:text="Puesto"></th>
+                    <th th:text="Cantidad"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="donation: ${donationsAmount}">
+                    <td th:text="."></td>
+                    <td th:text="${donation}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <h1> Top 10 localidades que no reciben donaciones: </h1>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th th:text="Puesto"></th>
+                    <th th:text="Nombre"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="location: ${locationsName}">
+                    <td th:text="."></td>
+                    <td th:text="${location}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

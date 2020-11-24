@@ -20,5 +20,7 @@ public interface DonationRepository extends CrudRepository<Donation, Integer> {
 
     @Query(value = "SELECT * FROM DONATIONS d ORDER BY d.AMOUNT DESC LIMIT 0, 10", nativeQuery = true)
     List<Donation> findTopTenDonations();
+
+    List<Donation> findByIdProject(Integer id);
 	
 }

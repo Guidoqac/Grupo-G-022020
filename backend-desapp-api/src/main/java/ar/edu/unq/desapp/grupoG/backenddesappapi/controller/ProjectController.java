@@ -16,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.mail.MessagingException;
+
 @RestController
 @RequestMapping("projects")
 @EnableAutoConfiguration
@@ -33,8 +35,12 @@ public class ProjectController {
     
     @AuditLogger
     @PostMapping(path = "/close")
-    public void closeProject(@RequestBody Project project) {
-         projectService.closeProject(project.getIdProject());
+    public void closeProject(@RequestBody Project project) throws MessagingException {
+        try{
+            projectService.closeProject(project.getIdProject());
+        }catch (MessagingException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "HAYQ UE CAMBIAR ESTO AAAAAA", e);
+        }
     }
 
     @AuditLogger
@@ -54,7 +60,7 @@ public class ProjectController {
     @PostMapping(path = "/create")
     public void createProject(@RequestBody Project project) throws Exception {
         try {
-    	projectService.save(project);
+    	    projectService.save(project);
         } catch (MissingDataException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Faltan datos del proyecto", e);
         }
