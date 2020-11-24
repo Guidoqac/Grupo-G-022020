@@ -30,6 +30,5 @@ class ArsatClientTest {
 //    void getLocationsTest(){
 //        ArsatData locations = arsat.getLocations();
 //
-//        System.out.println(locations.data);
 //    }
 }

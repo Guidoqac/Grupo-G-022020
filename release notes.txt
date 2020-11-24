@@ -1,0 +1,16 @@
+---------------------------------------------------------------------
+TAG ENTREGA 3
+---------------------------------------------------------------------
+
+NEW FEATURES:
+* Finalizacion de proyectos
+* Creacion de un proyecto por un admin
+* Creacion de logs
+* Test de arquitecturas
+* Validaciones
+* Responsive web desing
+* Paginacion
+
+NOTES:
+* Nos falta auth0 ya que el framework que elegimos (Ionic) requiere el uso de un emulador para dicha funcionalidad
+issue: https://community.auth0.com/t/typeerror-cannot-read-property-isavailable/12674

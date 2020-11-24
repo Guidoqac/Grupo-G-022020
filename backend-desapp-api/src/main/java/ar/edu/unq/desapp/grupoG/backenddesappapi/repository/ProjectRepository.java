@@ -22,7 +22,7 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     @Query(value = "SELECT * FROM PROJECT p WHERE NOT p.IS_CLOSED", nativeQuery = true)
     Page<Project> findOpenProyects(Pageable page);
 
-    @Query(value = "SELECT * FROM PROJECT p WHERE MONTH(p.CLOSE_PROJECT_DATE) = :month", nativeQuery = true)
-    Page<Project> findProjectsCloseToFinish(Pageable page, @Param("month") Integer mon);
+    @Query(value = "SELECT * FROM PROJECT p WHERE MONTH(p.CLOSE_PROJECT_DATE) = :month AND YEAR(p.CLOSE_PROJECT_DATE) = :year", nativeQuery = true)
+    Page<Project> findProjectsCloseToFinish(Pageable page, @Param("month") Integer mon, @Param("year") Integer yea);
 
 }

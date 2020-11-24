@@ -1,4 +1,6 @@
 package ar.edu.unq.desapp.grupoG.backenddesappapi.service;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.exceptions.InvalidIdException;
+import ar.edu.unq.desapp.grupoG.backenddesappapi.exceptions.MissingDataException;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.model.Project;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.DonationRepository;
 import ar.edu.unq.desapp.grupoG.backenddesappapi.repository.ProjectRepository;
@@ -31,41 +33,39 @@ public class ProjectService {
     private EmailSender emailSender;
 
     @Transactional
-    public Project save(Project model) throws Exception {
-        //System.out.println(model);
-        /*if(model.getLocation() == null &&
-           model.getFactor() < 0 &&
-           model.getMinPercentProjectClosure() == null &&
-           model.getProjectFantasyName() == null &&
-           model.getCloseProjectDate() == null &&
-           model.getStartProjectDate() == null &&
-           model.getDonations() == null
+    public Project save(Project model) throws MissingDataException {
+        if(model.getLocation() == null ||
+           model.getFactor() < 0 ||
+           model.getMinPercentProjectClosure() == null ||
+           model.getProjectFantasyName() == null ||
+           model.getCloseProjectDate() == null
            ){
-            return this.projectRepository.save(model);
-        }else{
             throw new MissingDataException("Faltan datos del proyecto.");
-        }*/
-        return this.projectRepository.save(model);
+        }else{
+            return this.projectRepository.save(model);
+        }
     }
 
     @Transactional
-    public Project findById(Integer id){
+    public Project findById(Integer id) throws InvalidIdException {
+        this.validateId(id);
         return this.projectRepository.findById(id).get();
     }
-    
+
     @Transactional
     public Page<Project> findAll(Pageable page){
         return this.projectRepository.findAll(page);
     }
 
     @Transactional
-    public void deleteById(Integer id){
+    public void deleteById(Integer id) throws InvalidIdException {
+        this.validateId(id);
         this.projectRepository.deleteById(id);
     }
 
     @Transactional
     public Page<Project> findProjectsCloseToFinish(Pageable page){
-        return this.projectRepository.findProjectsCloseToFinish(page, LocalDate.now().getMonth().getValue());
+        return this.projectRepository.findProjectsCloseToFinish(page, LocalDate.now().getMonth().getValue(), LocalDate.now().getYear());
     }
 
     @Transactional
@@ -73,9 +73,9 @@ public class ProjectService {
         return this.projectRepository.findOpenProyects(page);
     }
 
-
     @Transactional
-    public void closeProject(int id) throws MessagingException {
+    public void closeProject(int id) throws MessagingException, InvalidIdException {
+        this.validateId(id);
         Project project = this.findById(id);
         project.closeProject();
 
@@ -84,6 +84,14 @@ public class ProjectService {
         List<Integer> lsUserIds = new ArrayList<>(sinDuplicados);
         String[] mails = lsUserIds.stream().map(uId -> userRepository.findById(uId).get().getEmail()).collect(Collectors.toList()).toArray(new String[0]);
 
-        emailSender.sendMessageToFinishedProject(project.getProjectFantasyName(), mails);
+        if(mails.length > 0){
+            emailSender.sendMessageToFinishedProject(project.getProjectFantasyName(), mails);
+        }
+    }
+
+    private void validateId(Integer id) throws InvalidIdException {
+        if(id <= 0){
+            throw new InvalidIdException("El id no existe");
+        }
     }
 }
